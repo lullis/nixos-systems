@@ -3,7 +3,6 @@ let
   plainTextDir = "${config.users.users.raphael.home}/.secrets";
   encryptedDir = "${config.users.users.raphael.home}/.sync/vaults/gocryptfs";
 
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz";
   nur = import (builtins.fetchTarball
     "https://github.com/nix-community/NUR/archive/master.tar.gz") { };
 
@@ -63,7 +62,7 @@ let
 in
 {
   imports = [
-    (import "${home-manager}/nixos")
+    (import <home-manager/nixos>)
   ];
 
   nixpkgs.config = {
@@ -133,6 +132,7 @@ in
   environment.systemPackages = with pkgs; [
      pkgs.pulseaudio
      pkgs.pavucontrol
+     python310Dev
   ];
 
   nixpkgs.config.pulseaudio = true;
@@ -154,6 +154,7 @@ in
       nur.repos.rycee.hmModules.emacs-init
     ];
 
+    home.stateVersion = "22.11";
     home.packages = [
       # Base System Requirements
       pkgs.glibcLocales
@@ -189,7 +190,6 @@ in
       pkgs.httpie
 
       # Programming
-      python310Dev
       pkgs.rustup
       pkgs.go
       pkgs.yarn
