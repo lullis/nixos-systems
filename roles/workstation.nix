@@ -216,6 +216,7 @@ in
       pkgs.kubectl
       pkgs.awscli2
       pkgs.terraform
+      pkgs.doppler
 
       # System Administration
       pkgs.apache-directory-studio
