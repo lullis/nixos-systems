@@ -74,7 +74,7 @@ in
 
   users.users.raphael = {
     extraGroups = [ "wheel" "networkmanager" "docker" "audio" ];
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
   };
 
   virtualisation.docker.enable = true;
@@ -174,8 +174,11 @@ in
       pkgs.gnome.gnome-disk-utility
       pkgs.gnome.seahorse
 
+      # Office Tools
+      pkgs.libreoffice-qt
+      pkgs.hunspell
+
       # Console tools
-      pkgs.oh-my-zsh
       pkgs.htop
       pkgs.neofetch
       pkgs.silver-searcher
@@ -260,7 +263,7 @@ in
 
     programs.emacs = import ../programs/emacs.nix {pythonElpy = python310Dev;};
     programs.tmux = import ../programs/tmux.nix {tmuxPlugins = pkgs.tmuxPlugins;};
-    programs.zsh = import ../programs/zsh.nix;
+    # programs.zsh = import ../programs/zsh.nix;
     programs.git = import ../programs/git.nix;
 
     xresources.properties = {
