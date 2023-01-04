@@ -241,8 +241,6 @@ in
       pkgs.element-desktop
       pkgs.dino
       pkgs.slack
-      pkgs.mattermost-desktop
-      pkgs.teams
 
       # Media Editors
       pkgs.gimp
