@@ -8,6 +8,7 @@ let
 
   python310Dev = pkgs.python310.withPackages (ps:
     with ps; [
+      ansible-core
       autopep8
       black
       epc
@@ -26,25 +27,9 @@ let
       keyring
       keyrings-alt
       secretstorage
+      hvac
     ]);
 
-  ansible = pkgs.lib.overrideDerivation pkgs.python310Packages.ansible (oldAttrs: rec {
-    propagatedBuildInputs = with pkgs.python310Packages; [
-      resolvelib
-      pycrypto
-      paramiko
-      jinja2
-      pyyaml
-      httplib2
-      boto3
-      botocore
-      six
-      netaddr
-      setuptools
-      dns
-      hvac
-    ];
-  });
   pythonElpy = pkgs.python310.withPackages (ps:
     with ps; [
       autopep8
@@ -137,6 +122,7 @@ in
 
   nixpkgs.config.pulseaudio = true;
 
+  hardware.pulseaudio.enable = false;
   # Sound configuration via pulseaudio
   # hardware.pulseaudio = {
   #   enable = true;
@@ -206,7 +192,6 @@ in
       pkgs.robo3t
 
       # Devops
-      ansible
       pkgs.docker-compose
       pkgs.vault
       pkgs.nomad
@@ -222,11 +207,11 @@ in
       pkgs.apache-directory-studio
 
       # Remote work
-      # pkgs.citrix_workspace
 
       # Password Manager and Encrypted Filesystems
       pkgs.pwgen
       pkgs.keepassxc
+      pkgs.kpcli
       pkgs.gocryptfs
 
       # Web
