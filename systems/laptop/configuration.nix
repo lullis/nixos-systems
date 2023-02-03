@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ../../roles/common.nix
       ../../roles/workstation.nix
+      ../../hardware/framework/default.nix
     ];
 
   boot.loader.efi.canTouchEfiVariables = true;
