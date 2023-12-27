@@ -6,7 +6,7 @@ let
   nur = import (builtins.fetchTarball
     "https://github.com/nix-community/NUR/archive/master.tar.gz") { };
 
-  python310Dev = pkgs.python310.withPackages (ps:
+  python311Dev = pkgs.python311.withPackages (ps:
     with ps; [
       ansible-core
       autopep8
@@ -17,7 +17,6 @@ let
       isort
       jedi
       mypy
-      poetry
       pip
       rope
       setuptools
@@ -84,6 +83,13 @@ in
       configDir="/home/raphael/.config/syncthing";
     };
 
+    geoclue2 = {
+      enable = true;
+    };
+
+    localtimed = {
+      enable = true;
+    };
 
     xserver = {
       enable = true;
@@ -117,7 +123,9 @@ in
   environment.systemPackages = with pkgs; [
      pkgs.pulseaudio
      pkgs.pavucontrol
-     python310Dev
+     pkgs.xfce.xfce4-weather-plugin
+     pkgs.xfce.xfce4-whiskermenu-plugin
+     python311Dev
   ];
 
   nixpkgs.config.pulseaudio = true;
@@ -140,7 +148,7 @@ in
       nur.repos.rycee.hmModules.emacs-init
     ];
 
-    home.stateVersion = "22.11";
+    home.stateVersion = "23.05";
     home.packages = [
       # Base System Requirements
       pkgs.glibcLocales
@@ -148,9 +156,9 @@ in
 
       # Desktop Basics
       pkgs.fantasque-sans-mono
-      # pkgs.lightlocker
-      #pkgs.xdg-desktop-portal
-      # pkgs.xdg-desktop-portal-gtk
+      pkgs.lightlocker
+      pkgs.xdg-desktop-portal
+      pkgs.xdg-desktop-portal-gtk
 
       # Desktop tools
       pkgs.mate.mate-calc
@@ -180,9 +188,11 @@ in
       pkgs.go
       pkgs.yarn
       pkgs.nixfmt
-      pkgs.nodejs-16_x
+      pkgs.nodejs-18_x
       pkgs.gcc
       pkgs.gnumake
+      pkgs.poetry
+
 
       # Development
       pkgs.git
@@ -218,7 +228,7 @@ in
       pkgs.epiphany
       pkgs.brave
       pkgs.firefox-esr
-      pkgs.newsflash
+      # pkgs.newsflash
 
       # Email
       pkgs.thunderbird
@@ -227,6 +237,7 @@ in
       pkgs.element-desktop
       pkgs.dino
       pkgs.slack
+      pkgs.tdesktop
 
       # Media Editors
       pkgs.gimp
@@ -245,10 +256,10 @@ in
       pkgs.rhythmbox
     ];
 
-    programs.emacs = import ../programs/emacs.nix {pythonElpy = python310Dev;};
+    programs.emacs = import ../programs/emacs.nix {pythonElpy = pythonElpy;};
     programs.tmux = import ../programs/tmux.nix {tmuxPlugins = pkgs.tmuxPlugins;};
-    # programs.zsh = import ../programs/zsh.nix;
     programs.git = import ../programs/git.nix;
+    programs.alacritty = import ../programs/alacritty.nix;
 
     xresources.properties = {
       # Set some Emacs GUI properties in the .Xresources file because they are
@@ -261,6 +272,10 @@ in
     };
   };
 
+
+  programs.nm-applet.enable = true;
+  programs.nm-applet.indicator = true;
+
   systemd.user.services.gocryptfs = {
     unitConfig = {
       Description = "Encrypted Secrets File Mount";
@@ -271,7 +286,7 @@ in
       Type = "oneshot";
       StandardOutput = "journal";
       RemainAfterExit = true;
-      ExecStart = "/bin/sh -c '${pkgs.gocryptfs}/bin/gocryptfs --extpass=\"${python310Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}'";
+      ExecStart = "/bin/sh -c '${pkgs.gocryptfs}/bin/gocryptfs --extpass=\"${python311Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}'";
       ExecStartPre = "/bin/sh -c '${pkgs.coreutils}/bin/mkdir -p ${plainTextDir}'";
       ExecStop = "/bin/sh -c 'fusermount -u ${plainTextDir}'";
     };
