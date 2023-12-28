@@ -125,6 +125,7 @@ in
      pkgs.pavucontrol
      pkgs.xfce.xfce4-weather-plugin
      pkgs.xfce.xfce4-whiskermenu-plugin
+     pkgs.xfce.xfce4-pulseaudio-plugin
      python311Dev
   ];
 
