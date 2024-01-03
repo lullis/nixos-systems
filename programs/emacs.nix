@@ -292,7 +292,7 @@
 
       js = {
         enable = true;
-        mode = [ ''("\\.js\\'" . js-mode)'' ''("\\.json\\'" . js-mode)'' ];
+        mode = [ ''("\\.js\\'" . js-mode)'' ''("\\.json\\'" . js-mode)'' ''("\\.mjs\\'" . js-mode)''];
         config = ''
             (setq js-indent-level 2)
           '';
