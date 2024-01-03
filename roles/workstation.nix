@@ -214,6 +214,9 @@ in
       pkgs.terraform
       pkgs.doppler
 
+      # networking
+      pkgs.cloudflared
+
       # System Administration
       pkgs.apache-directory-studio
 
