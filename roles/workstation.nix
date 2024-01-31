@@ -244,7 +244,6 @@ in
       pkgs.pwgen
       pkgs.keepassxc
       pkgs.kpcli
-      pkgs.gocryptfs
 
       # Web
       pkgs.epiphany
@@ -308,9 +307,9 @@ in
       Type = "oneshot";
       StandardOutput = "journal";
       RemainAfterExit = true;
-      ExecStart = "/bin/sh -c '${pkgs.gocryptfs}/bin/gocryptfs --extpass=\"${python311Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}'";
-      ExecStartPre = "/bin/sh -c '${pkgs.coreutils}/bin/mkdir -p ${plainTextDir}'";
-      ExecStop = "/bin/sh -c 'fusermount -u ${plainTextDir}'";
+      ExecStart = "/run/current-system/sw/bin/gocryptfs --extpass=\"${python311Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}";
+      ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${plainTextDir}";
+      ExecStop = "/run/wrappers/bin/fusermount -u ${plainTextDir}";
     };
   };
 }
