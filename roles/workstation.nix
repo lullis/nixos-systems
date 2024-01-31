@@ -128,9 +128,21 @@ in
      pkgs.pavucontrol
      pkgs.traceroute
      pkgs.vim
+     pkgs.gocryptfs
      pkgs.xfce.xfce4-weather-plugin
      pkgs.xfce.xfce4-whiskermenu-plugin
      pkgs.xfce.xfce4-pulseaudio-plugin
+     pkgs.xfce.xfce4-icon-theme
+     pkgs.xfce.xfwm4-themes
+     pkgs.greybird
+     pkgs.pop-icon-theme
+     pkgs.papirus-icon-theme
+     pkgs.paper-icon-theme
+     pkgs.pantheon.elementary-icon-theme
+     pkgs.numix-icon-theme-square
+     pkgs.elementary-xfce-icon-theme
+     pkgs.arc-icon-theme
+     pkgs.arc-theme
      python311Dev
   ];
 
@@ -166,6 +178,7 @@ in
       pkgs.lightlocker
       pkgs.xdg-desktop-portal
       pkgs.xdg-desktop-portal-gtk
+      pkgs.dracula-icon-theme
 
       # Desktop tools
       pkgs.mate.mate-calc
