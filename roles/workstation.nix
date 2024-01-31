@@ -51,6 +51,9 @@ in
 
   nixpkgs.config = {
     allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-19.1.9"
+    ];
   };
 
   networking.networkmanager.enable = true;
@@ -101,14 +104,14 @@ in
       displayManager.defaultSession = "xfce";
     };
 
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      jack.enable = true;
-    };
+    # pipewire = {
+    #   enable = true;
+    #   alsa.enable = true;
+    #   alsa.support32Bit = true;
+    #   pulse.enable = true;
+    #   # If you want to use JACK applications, uncomment this
+    #   jack.enable = true;
+    # };
 
     gnome.gnome-keyring.enable = true;
     blueman.enable = true;
@@ -123,6 +126,8 @@ in
   environment.systemPackages = with pkgs; [
      pkgs.pulseaudio
      pkgs.pavucontrol
+     pkgs.traceroute
+     pkgs.vim
      pkgs.xfce.xfce4-weather-plugin
      pkgs.xfce.xfce4-whiskermenu-plugin
      pkgs.xfce.xfce4-pulseaudio-plugin
@@ -154,6 +159,7 @@ in
       # Base System Requirements
       pkgs.glibcLocales
       pkgs.gparted
+      pkgs.unzip
 
       # Desktop Basics
       pkgs.fantasque-sans-mono
@@ -165,7 +171,7 @@ in
       pkgs.mate.mate-calc
       pkgs.drawio
       pkgs.vokoscreen-ng
-      # pkgs.etcher
+      pkgs.etcher
       pkgs.transmission-gtk
       pkgs.gnome.gnome-disk-utility
       pkgs.gnome.seahorse
@@ -193,7 +199,6 @@ in
       pkgs.gcc
       pkgs.gnumake
       pkgs.poetry
-
 
       # Development
       pkgs.git
