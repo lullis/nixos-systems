@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ../../roles/common.nix
       ../../roles/workstation.nix
+      ../../roles/laptop.nix
       ../../hardware/framework/default.nix
     ];
 
