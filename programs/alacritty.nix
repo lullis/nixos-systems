@@ -1,7 +1,16 @@
 {
   enable = true;
   settings = {
-    font.size = 7.0;
+    selection = {
+      save_to_clipboard = true;
+    };
+
+    shell = {
+      program = "/home/raphael/.nix-profile/bin/tmux";
+      args = ["new-session" "-A" "-D" "-s" "main"];
+    };
+
+    font.size = 9.0;
 
     colors = {
       primary = {
