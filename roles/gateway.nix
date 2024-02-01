@@ -130,14 +130,6 @@
      permitRootLogin = "yes";
   };
 
-  services.hostapd = {
-    enable = true;
-    interface = "wlp0s20u7";
-    hwMode = "g";
-    ssid = "halkidiki";
-    wpaPassphrase = "ellinida";
-  };
-
   system.stateVersion = "21.05";
 
 }
