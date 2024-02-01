@@ -178,7 +178,6 @@ in
       pkgs.lightlocker
       pkgs.xdg-desktop-portal
       pkgs.xdg-desktop-portal-gtk
-      pkgs.dracula-icon-theme
 
       # Desktop tools
       pkgs.mate.mate-calc
@@ -194,9 +193,9 @@ in
       pkgs.hunspell
 
       # Console tools
-      pkgs.htop
-      pkgs.neofetch
-      pkgs.silver-searcher
+	    pkgs.htop
+ 	    pkgs.neofetch
+  	  pkgs.silver-searcher
       pkgs.ripgrep
       pkgs.fd
       pkgs.jq
@@ -223,9 +222,7 @@ in
       # Devops
       pkgs.docker-compose
       pkgs.vault
-      pkgs.nomad
       pkgs.gitlab-runner
-      pkgs.drone-cli
       pkgs.minikube
       pkgs.kubectl
       pkgs.awscli2
@@ -237,8 +234,6 @@ in
 
       # System Administration
       pkgs.apache-directory-studio
-
-      # Remote work
 
       # Password Manager and Encrypted Filesystems
       pkgs.pwgen
