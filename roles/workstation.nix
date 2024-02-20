@@ -59,27 +59,61 @@ in
   networking.networkmanager.enable = true;
 
   users.users.raphael = {
-    extraGroups = [ "wheel" "networkmanager" "docker" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "audio" "scanner" "lp"];
     shell = pkgs.bash;
   };
 
   virtualisation.docker.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 
-  hardware.bluetooth = {
-    enable = true;
-    settings = {
-      General = {
-        Enable = "Source,Sink,Media,Socket";
+  hardware = {
+    pulseaudio.enable = false;
+
+    sane = {
+      enable = true;
+      extraBackends = [ pkgs.hplipWithPlugin ];
+    };
+
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
       };
     };
   };
+
 
   security.sudo.wheelNeedsPassword = false;
   security.pam.services.lightdm.enableGnomeKeyring = true;
   security.rtkit.enable = true;
 
+  programs = {
+    thunar.plugins = [
+      pkgs.xfce.thunar-archive-plugin
+      pkgs.xfce.thunar-media-tags-plugin
+    ];
+  };
+
   services = {
+    avahi = {
+      enable = true;
+      nssmdns = true;
+    };
+
+    printing = {
+      enable = true;
+      listenAddresses = [ "*:631" ];
+      allowFrom = [ "all" ];
+      browsing = true;
+      defaultShared = true;
+      openFirewall = true;
+      drivers = [
+        pkgs.hplipWithPlugin
+      ];
+    };
+
     syncthing = {
       enable = true;
       user = "raphael";
@@ -143,21 +177,13 @@ in
      pkgs.elementary-xfce-icon-theme
      pkgs.arc-icon-theme
      pkgs.arc-theme
+     pkgs.hplip
      python311Dev
   ];
 
   nixpkgs.config.pulseaudio = true;
 
-  hardware.pulseaudio.enable = false;
-  # Sound configuration via pulseaudio
-  # hardware.pulseaudio = {
-  #   enable = true;
-  #   configFile = pkgs.writeText "default.pa" ''
-  #     # load-module module-bluetooth-policy
-  #     # load-module module-bluetooth-discover
-  #     load-module module-switch-on-connect
-  #   '';
-  # };
+
 
   environment.pathsToLink = [ "/share/zsh" ];
 
