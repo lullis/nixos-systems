@@ -745,6 +745,11 @@
       web-mode = {
         enable = true;
         mode = [ ''"\\.html\\'"'' ''"\\.jsx?\\'"'' ];
+        bind = {
+          "C-c C-s" = "counsel-projectile-ag";
+          "C-c C-f" = "counsel-projectile-find-file";
+        };
+
         # bindLocal = {
         #   web-mode-map = { "C-c C-s" = "counsel-projectile-ag"; };
         #   web-mode-map = { "C-c C-f" = "counsel-projectile-find-file"; };
