@@ -11,6 +11,9 @@ let
       ansible-core
       autopep8
       black
+      boto3
+      botocore
+      docker
       epc
       flake8
       ipython
@@ -27,6 +30,8 @@ let
       keyrings-alt
       secretstorage
       hvac
+      pywebpush
+      hcloud
     ]);
 
   pythonElpy = pkgs.python310.withPackages (ps:
@@ -53,6 +58,7 @@ in
     allowUnfree = true;
     permittedInsecurePackages = [
       "electron-19.1.9"
+      "vault-bin-1.15.6"
     ];
   };
 
@@ -99,7 +105,15 @@ in
   services = {
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
+    };
+
+    displayManager = {
+      defaultSession = "xfce";
+    };
+
+    libinput = {
+      enable = true;
     };
 
     printing = {
@@ -130,12 +144,12 @@ in
 
     xserver = {
       enable = true;
-      layout = "us";
-      xkbVariant = "intl";
-      xkbOptions = "eurosign:e";
-      libinput.enable = true;
+      xkb = {
+        variant = "intl";
+        options = "eurosign:e";
+        layout = "us";
+      };
       desktopManager.xfce.enable = true;
-      displayManager.defaultSession = "xfce";
     };
 
     pipewire = {
@@ -161,6 +175,7 @@ in
      pkgs.pulseaudio
      pkgs.pavucontrol
      pkgs.traceroute
+     pkgs.whois
      pkgs.vim
      pkgs.gocryptfs
      pkgs.xfce.xfce4-weather-plugin
@@ -209,10 +224,11 @@ in
       pkgs.mate.atril
       pkgs.drawio
       pkgs.vokoscreen-ng
-      pkgs.etcher
+      # pkgs.etcher
       pkgs.transmission-gtk
       pkgs.gnome.gnome-disk-utility
       pkgs.gnome.seahorse
+      pkgs.gnome.simple-scan
 
       # Office Tools
       pkgs.libreoffice-qt
@@ -228,17 +244,20 @@ in
       pkgs.alacritty
       pkgs.httpie
 
-      # Programming
+      # Software Development
       pkgs.rustup
       pkgs.go
       pkgs.yarn
-      pkgs.nixfmt
+      pkgs.bun
+      pkgs.nixfmt-classic
       pkgs.nodejs-18_x
+      pkgs.corepack_22
       pkgs.gcc
       pkgs.gnumake
       pkgs.poetry
-
-      # Development
+      pkgs.pre-commit
+      pkgs.ollama
+      pkgs.zed-editor
       pkgs.git
       pkgs.gitflow
       pkgs.hugo
@@ -247,13 +266,17 @@ in
 
       # Devops
       pkgs.docker-compose
-      pkgs.vault
+      pkgs.vault-bin
+      pkgs.hcloud
       pkgs.gitlab-runner
+      pkgs.woodpecker-cli
       pkgs.minikube
       pkgs.kubectl
       pkgs.awscli2
       pkgs.terraform
       pkgs.doppler
+      pkgs.minio-client
+      pkgs.openssl
 
       # networking
       pkgs.cloudflared
@@ -269,7 +292,7 @@ in
       # Web
       pkgs.epiphany
       pkgs.brave
-      pkgs.firefox-esr
+      pkgs.firefox
       pkgs.newsflash
 
       # Email
@@ -277,10 +300,12 @@ in
 
       # Messaging apps
       pkgs.element-desktop
+      pkgs.zoom-us
       pkgs.dino
       pkgs.slack
       pkgs.tdesktop
       pkgs.discord
+      pkgs.fractal
 
       # Media Editors
       pkgs.gimp
@@ -290,7 +315,7 @@ in
 
       # Media Managers
       pkgs.mkvtoolnix
-      pkgs.youtube-dl
+      pkgs.yt-dlp
       pkgs.beets
 
       # Media players

@@ -35,12 +35,11 @@
     };
 
 # UUID= /mnt/disks/disk1	btrfs rw,relatime,space_cache,subvolid=5,subvol=/	0	2
-
   fileSystems."/mnt/disks/disk1" = {
-       device = "/dev/disk/by-uuid/935dc783-8741-4d71-b1e8-2cb47dfc820f";
-       fsType = "btrfs";
-       options = ["subvol=/"];
-     };
+    device = "/dev/disk/by-uuid/935dc783-8741-4d71-b1e8-2cb47dfc820f";
+    fsType = "btrfs";
+    options = ["subvol=/"];
+  };
 
   fileSystems."/mnt/disks/disk2" =
     { device = "/dev/disk/by-uuid/504f5e3e-c49c-4272-a830-4ce3ee9e0f50";
