@@ -256,8 +256,6 @@ in
       pkgs.gnumake
       pkgs.poetry
       pkgs.pre-commit
-      pkgs.ollama
-      pkgs.zed-editor
       pkgs.git
       pkgs.gitflow
       pkgs.hugo

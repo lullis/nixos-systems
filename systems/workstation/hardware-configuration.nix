@@ -11,8 +11,17 @@
   boot.loader.systemd-boot.enable = true;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "amdgpu"];
   boot.extraModulePackages = [ ];
+
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   environment.systemPackages = with pkgs; [
     mergerfs
@@ -35,27 +44,27 @@
     };
 
 # UUID= /mnt/disks/disk1	btrfs rw,relatime,space_cache,subvolid=5,subvol=/	0	2
-  fileSystems."/mnt/disks/disk1" = {
-    device = "/dev/disk/by-uuid/935dc783-8741-4d71-b1e8-2cb47dfc820f";
-    fsType = "btrfs";
-    options = ["subvol=/"];
-  };
+#  fileSystems."/mnt/disks/disk1" = {
+#    device = "/dev/disk/by-uuid/935dc783-8741-4d71-b1e8-2cb47dfc820f";
+#    fsType = "btrfs";
+#    options = ["subvol=/"];
+#  };
 
-  fileSystems."/mnt/disks/disk2" =
-    { device = "/dev/disk/by-uuid/504f5e3e-c49c-4272-a830-4ce3ee9e0f50";
-      fsType = "ext4";
-    };
+#  fileSystems."/mnt/disks/disk2" =
+#    { device = "/dev/disk/by-uuid/504f5e3e-c49c-4272-a830-4ce3ee9e0f50";
+#      fsType = "ext4";
+#    };
 
-  fileSystems."/mnt/disks/disk3" = {
-    device = "/dev/disk/by-uuid/9ea634ea-f98d-42b5-a6b3-abb55e32f635";
-    fsType = "ext4";
-  };
+ # fileSystems."/mnt/disks/disk3" = {
+ #   device = "/dev/disk/by-uuid/9ea634ea-f98d-42b5-a6b3-abb55e32f635";
+ #   fsType = "ext4";
+ # };
 
-  fileSystems."/storage" = {
-    fsType = "fuse.mergerfs";
-    device = "/mnt/disks/disk*";
-    options = ["cache.files=partial" "dropcacheonclose=true" "category.create=mfs"];
-  };
+  #fileSystems."/storage" = {
+  #  fsType = "fuse.mergerfs";
+  #  device = "/mnt/disks/disk*";
+  #  options = ["cache.files=partial" "dropcacheonclose=true" "category.create=mfs"];
+  #};
 
   swapDevices = [ ];
 

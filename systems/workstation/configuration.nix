@@ -13,4 +13,13 @@
 
   networking.hostName = "workstation";
   system.stateVersion = "23.11";
+
+  services.ollama = {
+     enable = true;
+     acceleration = "rocm";
+     environmentVariables = {
+       ROC_ENABLE_PRE_VEGA = "1";
+       HSA_OVERRIDE_GFX_VERSION = "11.0.0";
+     };
+   };
 }
