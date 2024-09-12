@@ -98,6 +98,9 @@
 
         ;; Global shortcuts and keybindings
         (global-set-key [(shift f1)] 'call-last-kbd-macro)
+
+        ;; Set font to a size that is readable on HiDPI
+        (set-face-attribute 'default nil :height 250)
       '';
 
     usePackage = {

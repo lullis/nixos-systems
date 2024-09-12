@@ -10,7 +10,7 @@
       args = ["new-session" "-A" "-D" "-s" "main"];
     };
 
-    font.size = 9.0;
+    font.size = 18.0;
 
     colors = {
       primary = {
