@@ -115,8 +115,9 @@ in
 
     gnome.gnome-keyring.enable = true;
     blueman.enable = true;
-
+    printing.enable = true;
   };
+
   sound.mediaKeys = {
     enable = true;
     volumeStep = "5%";
