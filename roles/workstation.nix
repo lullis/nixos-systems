@@ -285,6 +285,7 @@ in
       # Password Manager and Encrypted Filesystems
       pkgs.pwgen
       pkgs.keepassxc
+      pkgs.gnome-secrets
       pkgs.kpcli
 
       # Web
