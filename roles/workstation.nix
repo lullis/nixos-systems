@@ -127,7 +127,7 @@ in
     syncthing = {
       enable = true;
       user = "raphael";
-      configDir="/home/raphael/.config/syncthing";
+      configDir = "/home/raphael/.config/syncthing";
     };
 
     geoclue2 = {
@@ -330,26 +330,30 @@ in
       "Emacs.toolBar" = false;
       "Emacs.verticalScrollBars" = false;
     };
-  };
 
+    systemd.user.services = {
+      gocryptfs = {
+        Unit = {
+          Description = "Encrypted Secrets File Mount";
+          After = "local-fs.target";
+        };
+        Install = {
+          WantedBy = ["default.target"];
+        };
+        Service = {
+          Type = "oneshot";
+          StandardOutput = "journal";
+          RemainAfterExit = true;
+          ExecStart = "/run/current-system/sw/bin/gocryptfs --extpass=\"${python311Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}";
+          ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${plainTextDir}";
+          ExecStop = "/run/wrappers/bin/fusermount -u ${plainTextDir}";
+        };
+      };
+    };
+  };
 
   programs.nm-applet.enable = true;
   programs.nm-applet.indicator = true;
   programs.ssh.startAgent = true;
 
-  systemd.user.services.gocryptfs = {
-    unitConfig = {
-      Description = "Encrypted Secrets File Mount";
-      After = "local-fs.target";
-    };
-    wantedBy = [ "default.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      StandardOutput = "journal";
-      RemainAfterExit = true;
-      ExecStart = "/run/current-system/sw/bin/gocryptfs --extpass=\"${python312Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}";
-      ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${plainTextDir}";
-      ExecStop = "/run/wrappers/bin/fusermount -u ${plainTextDir}";
-    };
-  };
 }
