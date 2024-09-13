@@ -17,6 +17,8 @@
   services.ollama = {
      enable = true;
      acceleration = "rocm";
+     home = "/home/ollama";
+     models = "/home/ollama/models";
      environmentVariables = {
        ROC_ENABLE_PRE_VEGA = "1";
        HSA_OVERRIDE_GFX_VERSION = "11.0.0";
