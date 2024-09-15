@@ -63,12 +63,6 @@ in
   };
 
   networking.networkmanager.enable = true;
-
-  users.users.raphael = {
-    extraGroups = [ "wheel" "networkmanager" "docker" "audio" "scanner" "lp"];
-    shell = pkgs.bash;
-  };
-
   virtualisation.docker.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 
@@ -200,7 +194,7 @@ in
       nur.repos.rycee.hmModules.emacs-init
     ];
 
-    home.stateVersion = "23.05";
+    home.stateVersion = "24.05";
     home.packages = [
       # Base System Requirements
       pkgs.glibcLocales
@@ -344,7 +338,7 @@ in
           Type = "oneshot";
           StandardOutput = "journal";
           RemainAfterExit = true;
-          ExecStart = "/run/current-system/sw/bin/gocryptfs --extpass=\"${python311Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}";
+          ExecStart = "/run/current-system/sw/bin/gocryptfs --extpass=\"${python312Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}";
           ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${plainTextDir}";
           ExecStop = "/run/wrappers/bin/fusermount -u ${plainTextDir}";
         };
@@ -355,5 +349,4 @@ in
   programs.nm-applet.enable = true;
   programs.nm-applet.indicator = true;
   programs.ssh.startAgent = true;
-
 }

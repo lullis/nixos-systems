@@ -22,11 +22,12 @@ in
 
   users.users.raphael = {
     isNormalUser = true;
+    shell = pkgs.bash;
+    extraGroups = [ "wheel" "networkmanager" "docker" "audio" "scanner" "lp"];
     hashedPassword = credentials.hashedPassword;
-    openssh.authorizedKeys.keys = [
-      credentials.publicSshKey
-    ];
+    openssh.authorizedKeys.keys = [ credentials.publicSshKey ];
   };
+
 
   # time.timeZone = "Europe/Berlin";
   networking.domain = "home.lullis.net";
@@ -40,8 +41,7 @@ in
   };
 
   programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+  };
 }

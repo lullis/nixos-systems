@@ -12,13 +12,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "workstation";
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   services.ollama = {
      enable = true;
      acceleration = "rocm";
-     home = "/home/ollama";
-     models = "/home/ollama/models";
      environmentVariables = {
        ROC_ENABLE_PRE_VEGA = "1";
        HSA_OVERRIDE_GFX_VERSION = "11.0.0";
