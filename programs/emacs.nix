@@ -350,6 +350,11 @@
         };
       };
 
+      rjsx-mode = {
+        enable = true;
+        mode = [ ''("\\.tsx\\'" . rjsx-mode)'' ];
+      };
+
       notifications = {
         enable = true;
         command = [ "notifications-notify" ];

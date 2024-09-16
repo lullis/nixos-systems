@@ -6,7 +6,7 @@ let
   nur = import (builtins.fetchTarball
     "https://github.com/nix-community/NUR/archive/master.tar.gz") { };
 
-  python311Dev = pkgs.python311.withPackages (ps:
+  python312Dev = pkgs.python312.withPackages (ps:
     with ps; [
       ansible-core
       autopep8
@@ -34,7 +34,7 @@ let
       hcloud
     ]);
 
-  pythonElpy = pkgs.python310.withPackages (ps:
+  pythonElpy = pkgs.python312.withPackages (ps:
     with ps; [
       autopep8
       black
@@ -108,10 +108,6 @@ in
       nssmdns4 = true;
     };
 
-    displayManager = {
-      defaultSession = "xfce";
-    };
-
     libinput = {
       enable = true;
     };
@@ -142,6 +138,11 @@ in
       enable = true;
     };
 
+    displayManager = {
+      enable = true;
+      defaultSession = "xfce";
+    };
+
     xserver = {
       enable = true;
       xkb = {
@@ -163,12 +164,6 @@ in
 
     gnome.gnome-keyring.enable = true;
     blueman.enable = true;
-    printing.enable = true;
-  };
-
-  sound.mediaKeys = {
-    enable = true;
-    volumeStep = "5%";
   };
 
   environment.systemPackages = with pkgs; [
@@ -193,12 +188,10 @@ in
      pkgs.arc-icon-theme
      pkgs.arc-theme
      pkgs.hplip
-     python311Dev
+     python312Dev
   ];
 
   nixpkgs.config.pulseaudio = true;
-
-
 
   environment.pathsToLink = [ "/share/zsh" ];
 
@@ -225,10 +218,10 @@ in
       pkgs.drawio
       pkgs.vokoscreen-ng
       # pkgs.etcher
-      pkgs.transmission-gtk
-      pkgs.gnome.gnome-disk-utility
-      pkgs.gnome.seahorse
-      pkgs.gnome.simple-scan
+      pkgs.transmission_4-gtk
+      pkgs.gnome-disk-utility
+      pkgs.seahorse
+      pkgs.simple-scan
 
       # Office Tools
       pkgs.libreoffice-qt
@@ -342,6 +335,7 @@ in
 
   programs.nm-applet.enable = true;
   programs.nm-applet.indicator = true;
+  programs.ssh.startAgent = true;
 
   systemd.user.services.gocryptfs = {
     unitConfig = {
@@ -353,7 +347,7 @@ in
       Type = "oneshot";
       StandardOutput = "journal";
       RemainAfterExit = true;
-      ExecStart = "/run/current-system/sw/bin/gocryptfs --extpass=\"${python311Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}";
+      ExecStart = "/run/current-system/sw/bin/gocryptfs --extpass=\"${python312Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}";
       ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${plainTextDir}";
       ExecStop = "/run/wrappers/bin/fusermount -u ${plainTextDir}";
     };
