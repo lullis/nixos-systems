@@ -369,6 +369,14 @@
           '';
       };
 
+      treesit-auto = {
+        enable = true;
+        config = ''
+        (treesit-auto-add-to-auto-mode-alist 'all)
+        (global-treesit-auto-mode)
+        '';
+      };
+
       # More helpful buffer names. Built-in.
       uniquify = {
         enable = true;

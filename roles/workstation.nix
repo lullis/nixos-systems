@@ -32,6 +32,7 @@ let
       hvac
       pywebpush
       hcloud
+      tree-sitter
     ]);
 
   pythonElpy = pkgs.python312.withPackages (ps:
@@ -47,6 +48,7 @@ let
       yapf
       setuptools
       isort
+      tree-sitter
     ]);
 in
 {
@@ -248,6 +250,7 @@ in
       pkgs.hugo
       pkgs.pgformatter
       pkgs.robo3t
+      pkgs.tree-sitter
 
       # Devops
       pkgs.docker-compose
