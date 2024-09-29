@@ -251,6 +251,7 @@ in
       pkgs.pgformatter
       pkgs.robo3t
       pkgs.tree-sitter
+      pkgs.zed-editor
 
       # Devops
       pkgs.docker-compose
