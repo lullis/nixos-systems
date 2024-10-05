@@ -1,7 +1,7 @@
 { pythonElpy, ... }:
 {
   enable = true;
-
+  extraPackages = epkgs: [ epkgs.tree-sitter epkgs.tree-sitter-langs epkgs.treesit-grammars.with-all-grammars epkgs.treesit-auto ];
   init = {
     enable = true;
     recommendedGcSettings = true;
@@ -104,6 +104,7 @@
       '';
 
     usePackage = {
+
       abbrev = {
         enable = true;
         diminish = [ "abbrev-mode" ];
@@ -324,6 +325,10 @@
       typescript-mode = {
         enable = true;
         mode = [ ''("\\.ts\\'" . typescript-mode)''];
+        bind = {
+          "C-c C-s" = "counsel-projectile-ag";
+          "C-c C-f" = "counsel-projectile-find-file";
+        };
       };
 
       tide = {
@@ -353,6 +358,10 @@
       rjsx-mode = {
         enable = true;
         mode = [ ''("\\.tsx\\'" . rjsx-mode)'' ];
+        bind = {
+          "C-c C-s" = "counsel-projectile-ag";
+          "C-c C-f" = "counsel-projectile-find-file";
+        };
       };
 
       notifications = {
@@ -599,7 +608,7 @@
         config = ''
             (setq org-roam-v2-ack t)
             (org-roam-directory (file-truename "~/notes"))
-            (org-roam-setup)
+            (org-roam-db-autosync-enable)
           '';
       };
 
@@ -656,7 +665,7 @@
           '';
         config = ''
             (setq company-idle-delay 0.5
-                  company-show-numbers t)
+                  company-show-quick-access t)
           '';
       };
 
@@ -702,22 +711,17 @@
 
       py-isort = {
         enable = true;
-        after = [ "python" ];
+        after = [ "python-mode" ];
         hook = [];
       };
 
-      python = {
+      python-mode = {
         enable = true;
         mode = [ ''("\\.py\\'" . python-mode)'' ];
         hook = [
           "hs-minor-mode"
           "(before-save . py-isort-before-save)"
         ];
-        config = ''
-          ;; Leave C-c C-s & C-c C-f for counsel-projectile
-          (unbind-key "C-c C-s" python-mode-map)
-          (unbind-key "C-c C-f" python-mode-map)
-          '';
       };
 
       restclient = {
