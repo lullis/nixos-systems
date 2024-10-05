@@ -21,6 +21,7 @@ let
       jedi
       mypy
       pip
+      pylint
       rope
       setuptools
       virtualenvwrapper
@@ -33,6 +34,12 @@ let
       pywebpush
       hcloud
       tree-sitter
+      python-lsp-server
+      python-lsp-black
+      pylsp-rope
+      pylsp-mypy
+      pyls-isort
+      pyls-flake8
     ]);
 
   pythonElpy = pkgs.python312.withPackages (ps:
@@ -43,6 +50,7 @@ let
       flake8
       jedi
       mypy
+      pylint
       pip
       rope
       yapf
@@ -252,6 +260,8 @@ in
       pkgs.robo3t
       pkgs.tree-sitter
       pkgs.zed-editor
+      pkgs.typescript-language-server
+      pkgs.vue-language-server
 
       # Devops
       pkgs.docker-compose

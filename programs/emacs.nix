@@ -143,7 +143,10 @@
 
       blacken = {
         enable = true;
-        hook = ["(python-mode . blacken-mode)"];
+        hook = [
+          "(python-ts-mode . blacken-mode)"
+
+        ];
       };
 
       cc-mode = {
@@ -239,7 +242,8 @@
       };
 
       elpy = {
-        enable = true;
+        # enable = true;
+        enable = false;
         hook = ["(after-init . elpy-enable)"];
         config = ''
             ;; Leave C-c C-s for project search
@@ -283,8 +287,14 @@
         mode = [ ''"\\.gradle\\'"'' ''"\\.groovy\\'"'' ''"Jenkinsfile\\'"'' ];
       };
 
+      css-mode = {
+        enable = true;
+        mode = [ ''("\\.css\\'" . css-mode)''];
+      };
+
       scss-mode = {
         enable = true;
+        after = ["css-mode"];
         config = "(setq css-indent-offset 2)";
       };
 
@@ -497,6 +507,9 @@
       lsp-mode = {
         enable = true;
         command = [ "lsp" ];
+        hook = [
+          "((python-ts-mode java-mode vue-mode javascript-ts-mode typescript-ts-mode) . lsp-deferred)"
+        ];
         bind = {
           "C-c r r" = "lsp-rename";
           "C-c r f" = "lsp-format-buffer";
@@ -504,10 +517,6 @@
           "C-c r a" = "lsp-execute-code-action";
           "C-c f r" = "lsp-find-references";
         };
-        config = ''
-            (setq lsp-eldoc-render-all nil
-                  lsp-prefer-flymake nil)
-          '';
       };
 
       lsp-rust = {
@@ -664,8 +673,10 @@
                         ([remap complete-symbol] . company-complete-common))
           '';
         config = ''
-            (setq company-idle-delay 0.5
-                  company-show-quick-access t)
+            (setq company-idle-delay 0.2
+                  company-minimum-prefix-length 2
+                  company-show-quick-access t
+            )
           '';
       };
 
@@ -709,19 +720,25 @@
         mode = [ ''"'\\.proto\\'"'' ];
       };
 
-      py-isort = {
+      python-isort = {
         enable = true;
-        after = [ "python-mode" ];
-        hook = [];
+      };
+
+      python-ts-mode = {
+        enable = true;
+        mode = [ ''("\\.py\\'" . python-ts-mode)'' ];
+        hook = [
+          "hs-minor-mode"
+          "(python-ts-mode . python-isort-on-save-mode)"
+        ];
       };
 
       python-mode = {
         enable = true;
-        mode = [ ''("\\.py\\'" . python-mode)'' ];
-        hook = [
-          "hs-minor-mode"
-          "(before-save . py-isort-before-save)"
-        ];
+        bind = {
+          "C-c C-s" = "counsel-projectile-ag";
+          "C-c C-f" = "counsel-projectile-find-file";
+        };
       };
 
       restclient = {
