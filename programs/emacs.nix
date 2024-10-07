@@ -344,7 +344,7 @@
 
       rjsx-mode = {
         enable = true;
-        mode = [ ''("\\.tsx\\'" . rjsx-mode)'' ];
+        mode = [ ''("\\.tsx\\'" . rjsx-mode)'' ''("\\.jsx\\'" . rjsx-mode)'' ];
         bind = {
           "C-c C-s" = "counsel-projectile-ag";
           "C-c C-f" = "counsel-projectile-find-file";
@@ -758,21 +758,16 @@
 
       web-mode = {
         enable = true;
-        mode = [ ''"\\.html\\'"'' ''"\\.jsx?\\'"'' ];
+        mode = [ ''"\\.html\\'"'' ];
         bind = {
           "C-c C-s" = "counsel-projectile-ag";
           "C-c C-f" = "counsel-projectile-find-file";
         };
 
-        # bindLocal = {
-        #   web-mode-map = { "C-c C-s" = "counsel-projectile-ag"; };
-        #   web-mode-map = { "C-c C-f" = "counsel-projectile-find-file"; };
-        # };
         config = ''
             (setq web-mode-attr-indent-offset 4
                   web-mode-code-indent-offset 2
                   web-mode-markup-indent-offset 2)
-            (add-to-list 'web-mode-content-types '("jsx" . "\\.jsx?\\'"))
           '';
       };
 
