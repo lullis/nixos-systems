@@ -15,4 +15,8 @@
   networking.hostName = "framework";
 
   system.stateVersion = "24.05";
+
+  services.ollama = {
+    enable = true;
+  };
 }
