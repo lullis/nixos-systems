@@ -41,23 +41,6 @@ let
       pyls-isort
       pyls-flake8
     ]);
-
-  pythonElpy = pkgs.python312.withPackages (ps:
-    with ps; [
-      autopep8
-      black
-      epc
-      flake8
-      jedi
-      mypy
-      pylint
-      pip
-      rope
-      yapf
-      setuptools
-      isort
-      tree-sitter
-    ]);
 in
 {
   imports = [
@@ -288,6 +271,7 @@ in
       pkgs.keepassxc
       pkgs.gnome-secrets
       pkgs.kpcli
+      pkgs.libsecret
 
       # Web
       pkgs.epiphany
@@ -324,7 +308,7 @@ in
       pkgs.rhythmbox
     ];
 
-    programs.emacs = import ../programs/emacs.nix {pythonElpy = pythonElpy;};
+    programs.emacs = import ../programs/emacs.nix;
     programs.tmux = import ../programs/tmux.nix {tmuxPlugins = pkgs.tmuxPlugins;};
     programs.git = import ../programs/git.nix;
     programs.alacritty = import ../programs/alacritty.nix;
@@ -352,7 +336,7 @@ in
           Type = "oneshot";
           StandardOutput = "journal";
           RemainAfterExit = true;
-          ExecStart = "/run/current-system/sw/bin/gocryptfs --extpass=\"${python312Dev}/bin/keyring get login gocryptfs\" ${encryptedDir} ${plainTextDir}";
+          ExecStart = "/run/current-system/sw/bin/gocryptfs --extpass=\"secret-tool lookup gocryptfs masterpassword\" ${encryptedDir} ${plainTextDir}";
           ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${plainTextDir}";
           ExecStop = "/run/wrappers/bin/fusermount -u ${plainTextDir}";
         };

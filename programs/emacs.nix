@@ -1,4 +1,3 @@
-{ pythonElpy, ... }:
 {
   enable = true;
   extraPackages = epkgs: [ epkgs.tree-sitter epkgs.tree-sitter-langs epkgs.treesit-grammars.with-all-grammars epkgs.treesit-auto ];
@@ -239,28 +238,6 @@
         enable = true;
         diminish = [ "eldoc-mode" ];
         command = [ "eldoc-mode" ];
-      };
-
-      elpy = {
-        # enable = true;
-        enable = false;
-        hook = ["(after-init . elpy-enable)"];
-        config = ''
-            ;; Leave C-c C-s for project search
-            (unbind-key "C-c C-s" elpy-mode-map)
-            (unbind-key "C-c C-f" elpy-mode-map)
-
-            ;; Use the virtualenv with all required packages
-            (setq elpy-rpc-virtualenv-path "${pythonElpy}")
-            (add-hook 'elpy-mode-hook (lambda ()
-                      (add-hook 'before-save-hook
-                      'elpy-black-fix-code nil t)))
-
-            ;; Jump to definition is broken on elpy 1.35. Revisit this after the issue on
-            ;; https://github.com/jorgenschaefer/elpy/issues/1795#issuecomment-816889633
-            ;; is solved. Recommended workaround is to use dump-jump.
-            (advice-add 'elpy--xref-backend :override #'dumb-jump-xref-activate)
-          '';
       };
 
       # Enable Electric Indent mode to do automatic indentation on RET.
