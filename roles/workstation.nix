@@ -308,7 +308,7 @@ in
       pkgs.rhythmbox
     ];
 
-    programs.emacs = import ../programs/emacs.nix;
+    programs.emacs = import ../programs/emacs.nix {};
     programs.tmux = import ../programs/tmux.nix {tmuxPlugins = pkgs.tmuxPlugins;};
     programs.git = import ../programs/git.nix;
     programs.alacritty = import ../programs/alacritty.nix;

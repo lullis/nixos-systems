@@ -1,4 +1,10 @@
-{
+{... }:
+let
+counsel-projectile-shortcut-map = {
+  "C-c C-s" = "counsel-projectile-ag";
+  "C-c C-f" = "counsel-projectile-find-file";
+};
+in {
   enable = true;
   extraPackages = epkgs: [ epkgs.tree-sitter epkgs.tree-sitter-langs epkgs.treesit-grammars.with-all-grammars epkgs.treesit-auto ];
   init = {
@@ -707,14 +713,22 @@
         hook = [
           "hs-minor-mode"
           "(python-ts-mode . python-isort-on-save-mode)"
+          ''(python-ts-mode . (lambda ()
+                (define-key python-ts-mode-map (kbd "C-c C-s") 'counsel-projectile-ag)
+                (define-key python-ts-mode-map (kbd "C-c C-f") 'counsel-projectile-find-file)
+          ))''
         ];
+        bindLocal = {
+          python-ts-mode-map = counsel-projectile-shortcut-map;
+          python-mode-map = counsel-projectile-shortcut-map;
+        };
       };
 
       python-mode = {
         enable = true;
-        bind = {
-          "C-c C-s" = "counsel-projectile-ag";
-          "C-c C-f" = "counsel-projectile-find-file";
+        bindLocal = {
+          python-mode-map = counsel-projectile-shortcut-map;
+          python-ts-mode-map = counsel-projectile-shortcut-map;
         };
       };
 
