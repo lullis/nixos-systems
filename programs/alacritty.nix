@@ -5,9 +5,11 @@
       save_to_clipboard = true;
     };
 
-    shell = {
-      program = "/home/raphael/.nix-profile/bin/tmux";
-      args = ["new-session" "-A" "-D" "-s" "main"];
+    terminal = {
+      shell = {
+        program = "/home/raphael/.nix-profile/bin/tmux";
+        args = ["new-session" "-A" "-D" "-s" "main"];
+      };
     };
 
     font.size = 18.0;
