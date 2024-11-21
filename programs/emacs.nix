@@ -206,7 +206,7 @@ in {
       easy-hugo = {
         enable = true;
         config = ''
-            (setq easy-hugo-basedir "~/code/personal/site/")
+            (setq easy-hugo-basedir "~/projects/personal/site/")
             (setq easy-hugo-url "https://raphael.lullis.net")
             (setq easy-hugo-postdir "content/post")
             (setq easy-hugo-amazon-s3-bucket-name "net.lullis.raphael")
@@ -216,7 +216,7 @@ in {
                   '(
                   ;; Communick Blog
                   (
-                    (easy-hugo-basedir . "~/code/communick/blog/")
+                    (easy-hugo-basedir . "~/projects/communick/blog/")
                     (easy-hugo-url . "https://blog.communick.com")
                     (easy-hugo-postdir . "content/posts")
                     (easy-hugo-amazon-s3-bucket-name . "communick.blog")
@@ -224,7 +224,7 @@ in {
 
                   ;; Hub20 Blog
                   (
-                    (easy-hugo-basedir . "~/code/hub20/dev/blog/")
+                    (easy-hugo-basedir . "~/projects/hub20/blog/")
                     (easy-hugo-url . "https://blog.hub20.io")
                     (setq easy-hugo-postdir "content")
                   )
@@ -634,7 +634,7 @@ in {
           "C-c p" = "projectile-command-map";
         };
         config = ''
-            (setq projectile-project-search-path '("~/code/"))
+            (setq projectile-project-search-path '("~/code/" "~/projects/"))
             (setq projectile-enable-caching t
                   projectile-completion-system 'default)
             (projectile-mode 1)

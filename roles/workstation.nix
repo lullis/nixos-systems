@@ -245,6 +245,7 @@ in
       pkgs.zed-editor
       pkgs.typescript-language-server
       pkgs.vue-language-server
+      pkgs.gopls
 
       # Devops
       pkgs.docker-compose
@@ -295,7 +296,7 @@ in
       pkgs.gimp
       pkgs.inkscape
       pkgs.pitivi
-      pkgs.handbrake
+      # pkgs.handbrake
 
       # Media Managers
       pkgs.mkvtoolnix
