@@ -328,10 +328,10 @@ in
       gocryptfs = {
         Unit = {
           Description = "Encrypted Secrets File Mount";
-          After = "local-fs.target";
+          After = "graphical-session.target";
         };
         Install = {
-          WantedBy = ["default.target"];
+          WantedBy = ["graphical-session.target"];
         };
         Service = {
           Type = "oneshot";
