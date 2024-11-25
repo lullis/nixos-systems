@@ -187,7 +187,6 @@ in
       nur.repos.rycee.hmModules.emacs-init
     ];
 
-    home.stateVersion = "24.05";
     home.packages = [
       # Base System Requirements
       pkgs.glibcLocales
@@ -215,9 +214,9 @@ in
       pkgs.hunspell
 
       # Console tools
-	    pkgs.htop
- 	    pkgs.neofetch
-  	  pkgs.silver-searcher
+      pkgs.htop
+      pkgs.neofetch
+      pkgs.silver-searcher
       pkgs.ripgrep
       pkgs.fd
       pkgs.jq
