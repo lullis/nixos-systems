@@ -83,9 +83,11 @@ in
   security.rtkit.enable = true;
 
   programs = {
+    file-roller.enable = true;
     thunar.plugins = [
       pkgs.xfce.thunar-archive-plugin
       pkgs.xfce.thunar-media-tags-plugin
+      pkgs.xfce.thunar-volman
     ];
   };
 
@@ -201,7 +203,7 @@ in
       # Desktop tools
       pkgs.mate.mate-calc
       pkgs.mate.atril
-      pkgs.drawio
+      # pkgs.drawio
       pkgs.vokoscreen-ng
       # pkgs.etcher
       pkgs.transmission_4-gtk
