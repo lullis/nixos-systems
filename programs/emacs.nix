@@ -491,7 +491,7 @@ in {
         enable = true;
         command = [ "lsp" ];
         hook = [
-          "((python-ts-mode java-mode vue-mode javascript-ts-mode typescript-ts-mode) . lsp-deferred)"
+          "((python-ts-mode java-mode vue-mode javascript-ts-mode typescript-ts-mode go-ts-mode) . lsp-deferred)"
         ];
         bind = {
           "C-c r r" = "lsp-rename";
@@ -691,8 +691,9 @@ in {
           '';
       };
 
-      go-mode = {
+      go-ts-mode = {
         enable = true;
+        mode = [ ''("\\.go\\'" . go-ts-mode)'' ];
         hook = [
           ''('go-mode . 'lsp-deferred)''
         ];

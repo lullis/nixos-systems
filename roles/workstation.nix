@@ -194,11 +194,13 @@ in
       pkgs.glibcLocales
       pkgs.gparted
       pkgs.unzip
+      pkgs.archiver
 
       # Desktop Basics
       pkgs.fantasque-sans-mono
       pkgs.xdg-desktop-portal
       pkgs.xdg-desktop-portal-gtk
+      pkgs.xarchiver
 
       # Desktop tools
       pkgs.mate.mate-calc
@@ -247,6 +249,7 @@ in
       pkgs.typescript-language-server
       pkgs.vue-language-server
       pkgs.gopls
+      pkgs.godef
 
       # Devops
       pkgs.docker-compose
