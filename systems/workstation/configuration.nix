@@ -3,6 +3,7 @@
 {
   imports =
     [
+      (import <home-manager/nixos>)
       ./hardware-configuration.nix
       ../../roles/common.nix
       ../../roles/workstation.nix
@@ -13,6 +14,10 @@
 
   networking.hostName = "workstation";
   system.stateVersion = "24.05";
+
+  home-manager.users.raphael = {
+    home.stateVersion = "24.05";
+  };
 
   services.ollama = {
      enable = true;
