@@ -10,11 +10,13 @@ let
     with ps; [
       ansible-core
       autopep8
+      base58
       black
       boto3
       botocore
       docker
       epc
+      fastecdsa
       flake8
       ipython
       isort
@@ -30,6 +32,7 @@ let
       keyring
       keyrings-alt
       secretstorage
+      signedjson
       hvac
       pywebpush
       hcloud
@@ -60,8 +63,6 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 
   hardware = {
-    pulseaudio.enable = false;
-
     sane = {
       enable = true;
       extraBackends = [ pkgs.hplipWithPlugin ];
@@ -89,6 +90,11 @@ in
       pkgs.xfce.thunar-media-tags-plugin
       pkgs.xfce.thunar-volman
     ];
+
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
   };
 
   services = {
@@ -112,6 +118,8 @@ in
         pkgs.hplipWithPlugin
       ];
     };
+
+    pulseaudio.enable = false;
 
     syncthing = {
       enable = true;
@@ -238,6 +246,7 @@ in
       pkgs.gcc
       pkgs.gnumake
       pkgs.poetry
+      pkgs.uv
       pkgs.pre-commit
       pkgs.git
       pkgs.gitflow
@@ -270,6 +279,7 @@ in
 
       # System Administration
       pkgs.apache-directory-studio
+      pkgs.matrix-synapse-tools.synadm
 
       # Password Manager and Encrypted Filesystems
       pkgs.pwgen
