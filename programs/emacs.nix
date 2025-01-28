@@ -738,6 +738,10 @@ in {
         mode = [ ''("\\.http\\'" . restclient-mode)'' ];
       };
 
+      ruff-format = {
+        enable = true;
+      };
+
       sqlformat = {
         enable = true;
         config = ''

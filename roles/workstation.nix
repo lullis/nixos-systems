@@ -43,6 +43,7 @@ let
       pylsp-mypy
       pyls-isort
       pyls-flake8
+      ruff
     ]);
 in
 {
@@ -202,7 +203,7 @@ in
       pkgs.glibcLocales
       pkgs.gparted
       pkgs.unzip
-      pkgs.archiver
+      # pkgs.archiver
 
       # Desktop Basics
       pkgs.fantasque-sans-mono
@@ -236,6 +237,7 @@ in
       pkgs.httpie
 
       # Software Development
+      pkgs.direnv
       pkgs.rustup
       pkgs.go
       pkgs.yarn
@@ -327,6 +329,10 @@ in
     programs.tmux = import ../programs/tmux.nix {tmuxPlugins = pkgs.tmuxPlugins;};
     programs.git = import ../programs/git.nix;
     programs.alacritty = import ../programs/alacritty.nix;
+    programs.direnv = {
+      enable = true;
+      enableBashIntegration = true;
+    };
 
     xresources.properties = {
       # Set some Emacs GUI properties in the .Xresources file because they are
