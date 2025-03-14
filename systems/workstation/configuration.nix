@@ -19,6 +19,18 @@
     home.stateVersion = "24.05";
   };
 
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+
+    amdgpu.amdvlk = {
+      enable = true;
+      support32Bit.enable = true;
+    };
+  };
+
   services.ollama = {
      enable = true;
      acceleration = "rocm";

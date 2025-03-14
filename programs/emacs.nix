@@ -345,6 +345,11 @@ in {
         bind = {
           "C-c C-l" = "vue-mode-reparse";
           "C-c C-e" = "vue-mode-edit-indirect-at-point";
+          "C-c C-s" = "counsel-projectile-ag";
+          "C-c C-f" = "counsel-projectile-find-file";
+        };
+        bindLocal = {
+          vue-mode-map = counsel-projectile-shortcut-map;
         };
       };
 

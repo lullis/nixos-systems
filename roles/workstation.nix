@@ -15,6 +15,7 @@ let
       boto3
       botocore
       docker
+      dunamai
       epc
       fastecdsa
       flake8
@@ -37,6 +38,7 @@ let
       pywebpush
       hcloud
       tree-sitter
+      poetry-dynamic-versioning
       python-lsp-server
       python-lsp-black
       pylsp-rope
@@ -60,7 +62,17 @@ in
   };
 
   networking.networkmanager.enable = true;
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      userland-proxy = false;
+      experimental = true;
+      metrics-addr = "0.0.0.0:9323";
+      ipv6 = true;
+      fixed-cidr-v6 = "fd00::/80";
+    };
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 
   hardware = {
@@ -78,7 +90,6 @@ in
       };
     };
   };
-
 
   security.sudo.wheelNeedsPassword = false;
   security.pam.services.lightdm.enableGnomeKeyring = true;
@@ -214,7 +225,7 @@ in
       # Desktop tools
       pkgs.mate.mate-calc
       pkgs.mate.atril
-      # pkgs.drawio
+      pkgs.drawio
       pkgs.vokoscreen-ng
       # pkgs.etcher
       pkgs.transmission_4-gtk
@@ -243,7 +254,7 @@ in
       pkgs.yarn
       pkgs.bun
       pkgs.nixfmt-classic
-      pkgs.nodejs-18_x
+      pkgs.nodejs_23
       pkgs.corepack_22
       pkgs.gcc
       pkgs.gnumake
@@ -261,12 +272,14 @@ in
       pkgs.vue-language-server
       pkgs.gopls
       pkgs.godef
+      pkgs.gettext
 
       # Devops
       pkgs.docker-compose
       pkgs.vault-bin
       pkgs.hcloud
       pkgs.gitlab-runner
+      pkgs.gitlab-ci-local
       pkgs.woodpecker-cli
       pkgs.minikube
       pkgs.kubectl
@@ -281,7 +294,7 @@ in
 
       # System Administration
       pkgs.apache-directory-studio
-      pkgs.matrix-synapse-tools.synadm
+      pkgs.synadm
 
       # Password Manager and Encrypted Filesystems
       pkgs.pwgen
