@@ -225,7 +225,7 @@ in
       # Desktop tools
       pkgs.mate.mate-calc
       pkgs.mate.atril
-      pkgs.drawio
+      # pkgs.drawio
       pkgs.vokoscreen-ng
       # pkgs.etcher
       pkgs.transmission_4-gtk
@@ -254,7 +254,7 @@ in
       pkgs.yarn
       pkgs.bun
       pkgs.nixfmt-classic
-      pkgs.nodejs_23
+      pkgs.nodejs_22
       pkgs.corepack_22
       pkgs.gcc
       pkgs.gnumake
@@ -294,7 +294,7 @@ in
 
       # System Administration
       pkgs.apache-directory-studio
-      pkgs.synadm
+      # pkgs.synadm
 
       # Password Manager and Encrypted Filesystems
       pkgs.pwgen
