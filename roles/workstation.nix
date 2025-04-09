@@ -265,6 +265,7 @@ in
       pkgs.gitflow
       pkgs.hugo
       pkgs.pgformatter
+      pkgs.sqlitebrowser
       pkgs.robo3t
       pkgs.tree-sitter
       pkgs.zed-editor
