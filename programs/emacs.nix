@@ -755,6 +755,10 @@ in {
           '';
       };
 
+      prisma-mode = {
+        enable = true;
+      };
+
       transpose-frame = {
         enable = true;
         bind = { "C-c f t" = "transpose-frame"; };
