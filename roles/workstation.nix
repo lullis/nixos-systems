@@ -209,6 +209,10 @@ in
       nur.repos.rycee.hmModules.emacs-init
     ];
 
+    home.sessionVariables = {
+       QT_SCALE_FACTOR = 2;
+    };
+
     home.packages = [
       # Base System Requirements
       pkgs.glibcLocales
@@ -265,8 +269,8 @@ in
       pkgs.gitflow
       pkgs.hugo
       pkgs.pgformatter
-      pkgs.sqlitebrowser
       pkgs.robo3t
+      pkgs.sqlitebrowser
       pkgs.tree-sitter
       pkgs.zed-editor
       pkgs.typescript-language-server
@@ -274,6 +278,7 @@ in
       pkgs.gopls
       pkgs.godef
       pkgs.gettext
+      pkgs.aider-chat
 
       # Devops
       pkgs.docker-compose
