@@ -255,6 +255,7 @@ in
       pkgs.direnv
       pkgs.rustup
       pkgs.go
+      pkgs.cargo-tauri
       pkgs.yarn
       pkgs.bun
       pkgs.nixfmt-classic
@@ -273,6 +274,8 @@ in
       pkgs.sqlitebrowser
       pkgs.tree-sitter
       pkgs.zed-editor
+      pkgs.code-cursor
+      pkgs.open-webui
       pkgs.typescript-language-server
       pkgs.vue-language-server
       pkgs.gopls
