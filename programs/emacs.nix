@@ -147,10 +147,9 @@ in {
       };
 
       blacken = {
-        enable = true;
+        enable = false;
         hook = [
           "(python-ts-mode . blacken-mode)"
-
         ];
       };
 
@@ -710,7 +709,7 @@ in {
       };
 
       python-isort = {
-        enable = true;
+        enable = false;
       };
 
       python-ts-mode = {
@@ -718,7 +717,7 @@ in {
         mode = [ ''("\\.py\\'" . python-ts-mode)'' ];
         hook = [
           "hs-minor-mode"
-          "(python-ts-mode . python-isort-on-save-mode)"
+          "(python-ts-mode . ruff-format-on-save-mode)"
           ''(python-ts-mode . (lambda ()
                 (define-key python-ts-mode-map (kbd "C-c C-s") 'counsel-projectile-ag)
                 (define-key python-ts-mode-map (kbd "C-c C-f") 'counsel-projectile-find-file)
