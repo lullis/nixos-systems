@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   imports =
     [
@@ -19,6 +18,18 @@
 
   home-manager.users.raphael = {
     home.stateVersion = "25.05";
+    systemd.user.services = {
+      cloudflared = {
+        Unit = {
+          Description = "Cloudflare Tunnel";
+          After = "docker.target";
+        };
+        Service = {
+          StandardOutput = "journal";
+          ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/docker-compose -f ${config.users.users.raphael.home}/projects/homelab/code/docker/cloudflared.yml up";
+        };
+      };
+    };
   };
 
   services.ollama = {
