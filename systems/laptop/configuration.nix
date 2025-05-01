@@ -13,8 +13,17 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "framework";
+  networking.firewall.enable = false;
+  networking.nameservers = [
+    "1.1.1.1" "4.2.2.1"
+  ];
 
   system.stateVersion = "25.05";
+
+  virtualisation.docker.enable = true;
+  virtualisation.docker.daemon.settings = {
+    "userland-proxy" = true;
+  };
 
   home-manager.users.raphael = {
     home.stateVersion = "25.05";
@@ -22,11 +31,10 @@
       cloudflared = {
         Unit = {
           Description = "Cloudflare Tunnel";
-          After = "docker.target";
         };
         Service = {
           StandardOutput = "journal";
-          ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/docker-compose -f ${config.users.users.raphael.home}/projects/homelab/code/docker/cloudflared.yml up";
+          ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/cloudflared tunnel run";
         };
       };
     };
