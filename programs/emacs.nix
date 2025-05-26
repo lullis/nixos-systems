@@ -560,8 +560,8 @@ in {
           ''];
         config = ''
 
-            (setq org-agenda-files '("~/.sync/personal/agenda"))
-            (setq org-archive-location '("~/.sync/personal/archive"))
+            (setq org-agenda-files '("~/.sync/pim/agenda"))
+            (setq org-archive-location "~/.sync/pim/archive.org::* From %s")
 
             (setq org-agenda-custom-commands
                   '(("c" "Simple agenda view"
