@@ -336,6 +336,8 @@ in
       pkgs.gimp
       pkgs.inkscape
       pkgs.pitivi
+      pkgs.opusTools
+      pkgs.sox
       # pkgs.handbrake
 
       # Media Managers
