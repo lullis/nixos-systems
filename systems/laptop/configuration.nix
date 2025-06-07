@@ -27,17 +27,6 @@
 
   home-manager.users.raphael = {
     home.stateVersion = "25.05";
-    systemd.user.services = {
-      cloudflared = {
-        Unit = {
-          Description = "Cloudflare Tunnel";
-        };
-        Service = {
-          StandardOutput = "journal";
-          ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/cloudflared tunnel run";
-        };
-      };
-    };
   };
 
   services.ollama = {

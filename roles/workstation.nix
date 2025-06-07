@@ -371,6 +371,16 @@ in
     };
 
     systemd.user.services = {
+      cloudflared = {
+        Unit = {
+          Description = "Cloudflare Tunnel";
+        };
+        Service = {
+          StandardOutput = "journal";
+          ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/cloudflared tunnel run";
+        };
+      };
+
       gocryptfs = {
         Unit = {
           Description = "Encrypted Secrets File Mount";
