@@ -39,4 +39,15 @@
        HSA_OVERRIDE_GFX_VERSION = "11.0.0";
      };
    };
+
+  services.kubo = {
+    enable = true;
+    settings = {
+      Addresses = {
+        AddrsListen = [ "/ip4/127.0.0.1/tcp/4001" ];
+        API = "/ip4/127.0.0.1/tcp/5001";
+        Gateway = "/ip4/127.0.0.1/tcp/4080";
+      };
+    };
+  };
 }
