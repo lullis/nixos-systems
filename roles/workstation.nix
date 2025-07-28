@@ -262,7 +262,7 @@ in
       pkgs.bun
       pkgs.nixfmt-classic
       pkgs.nodejs_22
-      pkgs.corepack_22
+      # pkgs.corepack_22
       pkgs.gcc
       pkgs.gnumake
       pkgs.poetry
@@ -277,7 +277,6 @@ in
       pkgs.tree-sitter
       pkgs.zed-editor
       pkgs.code-cursor
-      pkgs.open-webui
       pkgs.typescript-language-server
       pkgs.vue-language-server
       pkgs.gopls
@@ -286,18 +285,19 @@ in
       pkgs.aider-chat
 
       # Devops
-      pkgs.docker-compose
       pkgs.vault-bin
-      pkgs.hcloud
+      pkgs.doppler
       pkgs.gitlab-runner
       pkgs.gitlab-ci-local
       pkgs.woodpecker-cli
       pkgs.minikube
       pkgs.kubectl
+      pkgs.hcloud
+      pkgs.heroku
       pkgs.awscli2
       pkgs.terraform
-      pkgs.doppler
       pkgs.minio-client
+      pkgs.docker-compose
       pkgs.openssl
 
       # networking
@@ -403,5 +403,5 @@ in
 
   programs.nm-applet.enable = true;
   programs.nm-applet.indicator = true;
-  programs.ssh.startAgent = true;
+  # programs.ssh.startAgent = true;
 }
