@@ -242,6 +242,7 @@ in
       # Office Tools
       pkgs.libreoffice-qt
       pkgs.hunspell
+      pkgs.reveal-md
 
       # Console tools
       pkgs.htop
