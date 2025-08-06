@@ -106,6 +106,10 @@ in {
 
         ;; Set font to a size that is readable on HiDPI
         (set-face-attribute 'default nil :height 200)
+
+        ;; Set flymake variables (we are not using it, but seems like CSS Mode looks for it)
+        (setq flymake-allowed-file-name-masks nil)
+        (setq flymake-err-line-patterns nil)
       '';
 
     usePackage = {
