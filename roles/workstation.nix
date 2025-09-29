@@ -184,6 +184,7 @@ in
      pkgs.whois
      pkgs.vim
      pkgs.gocryptfs
+     pkgs.xfce.xfce4-sensors-plugin
      pkgs.xfce.xfce4-weather-plugin
      pkgs.xfce.xfce4-whiskermenu-plugin
      pkgs.xfce.xfce4-pulseaudio-plugin
@@ -220,6 +221,7 @@ in
       pkgs.glibcLocales
       pkgs.gparted
       pkgs.unzip
+      pkgs.lm_sensors
       # pkgs.archiver
 
       # Desktop Basics

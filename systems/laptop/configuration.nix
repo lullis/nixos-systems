@@ -25,6 +25,10 @@
     "userland-proxy" = true;
   };
 
+  environment.systemPackages = with pkgs; [
+     pkgs.fw-ectool
+  ];
+
   home-manager.users.raphael = {
     home.stateVersion = "25.05";
   };
