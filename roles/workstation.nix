@@ -305,6 +305,8 @@ in
 
       # networking
       pkgs.cloudflared
+      pkgs.wireguard-tools
+      pkgs.wg-netmanager
 
       # System Administration
       pkgs.apache-directory-studio
