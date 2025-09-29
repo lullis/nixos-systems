@@ -233,7 +233,7 @@ in
       # Desktop tools
       pkgs.mate.mate-calc
       pkgs.mate.atril
-      # pkgs.drawio
+      pkgs.drawio
       pkgs.vokoscreen-ng
       # pkgs.etcher
       pkgs.transmission_4-gtk
