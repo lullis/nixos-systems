@@ -167,6 +167,10 @@ in {
           ''];
       };
 
+      # claude-code-ide = {
+      #   enable = true;
+      # };
+
       deadgrep = {
         enable = true;
         bind = { "C-x f" = "deadgrep"; };
