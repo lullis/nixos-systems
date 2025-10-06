@@ -10,6 +10,7 @@
     home.packages = [
       pkgs.steam
       pkgs.julius
+      pkgs.kdePackages.qtwayland
     ];
   };
 }

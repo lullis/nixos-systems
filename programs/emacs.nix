@@ -277,6 +277,8 @@ in {
         mode = [ ''"\\.gradle\\'"'' ''"\\.groovy\\'"'' ''"Jenkinsfile\\'"'' ];
       };
 
+      # CSS/SASS/SCSS Development
+
       css-mode = {
         enable = true;
         mode = [ ''("\\.css\\'" . css-mode)''];
@@ -367,6 +369,11 @@ in {
           "C-c C-s" = "counsel-projectile-ag";
           "C-c C-f" = "counsel-projectile-find-file";
         };
+      };
+
+      # Integration with LLM assistants
+      gptel = {
+        enable = true;
       };
 
       notifications = {

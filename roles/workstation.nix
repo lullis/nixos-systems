@@ -61,6 +61,11 @@ in
     ];
   };
 
+  boot.kernel.sysctl = {
+    "net.core.rmem_max" = 7500000;
+    "net.core.wmem_max" = 7500000;
+  };
+
   networking.networkmanager.enable = true;
   virtualisation.docker = {
     enable = true;
@@ -286,6 +291,7 @@ in
       pkgs.godef
       pkgs.gettext
       pkgs.aider-chat
+      pkgs.claude-code
 
       # Devops
       pkgs.vault-bin
