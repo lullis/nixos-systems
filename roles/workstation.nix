@@ -284,7 +284,9 @@ in
       pkgs.sqlitebrowser
       pkgs.tree-sitter
       pkgs.zed-editor
+      pkgs.postman
       pkgs.code-cursor
+      pkgs.claude-code
       pkgs.typescript-language-server
       pkgs.vue-language-server
       pkgs.gopls
@@ -342,6 +344,9 @@ in
       pkgs.tdesktop
       pkgs.discord
       pkgs.fractal
+
+      # LLM Assistants
+      pkgs.lmstudio
 
       # Media Editors
       pkgs.gimp
