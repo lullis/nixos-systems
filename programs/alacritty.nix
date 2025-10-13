@@ -12,7 +12,7 @@
       };
     };
 
-    font.size = 18.0;
+    font.size = 10.0;
 
     colors = {
       primary = {

@@ -105,7 +105,7 @@ in {
         (global-set-key [(shift f1)] 'call-last-kbd-macro)
 
         ;; Set font to a size that is readable on HiDPI
-        (set-face-attribute 'default nil :height 200)
+        ;;(set-face-attribute 'default nil :height 200)
 
         ;; Set flymake variables (we are not using it, but seems like CSS Mode looks for it)
         (setq flymake-allowed-file-name-masks nil)

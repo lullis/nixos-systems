@@ -217,10 +217,6 @@ in
       nur.repos.rycee.hmModules.emacs-init
     ];
 
-    home.sessionVariables = {
-       QT_SCALE_FACTOR = 2;
-    };
-
     home.packages = [
       # Base System Requirements
       pkgs.glibcLocales
