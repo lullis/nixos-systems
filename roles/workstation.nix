@@ -5,8 +5,7 @@ let
 
   nur = import (builtins.fetchTarball
     "https://github.com/nix-community/NUR/archive/master.tar.gz") { };
-
-  python312Dev = pkgs.python312.withPackages (ps:
+  python313Dev = pkgs.python313.withPackages (ps:
     with ps; [
       ansible-core
       autopep8
@@ -36,7 +35,7 @@ let
       signedjson
       hvac
       pywebpush
-      hcloud
+      # hcloud
       tree-sitter
       poetry-dynamic-versioning
       python-lsp-server
@@ -205,7 +204,7 @@ in
      pkgs.arc-icon-theme
      pkgs.arc-theme
      pkgs.hplip
-     python312Dev
+     python313Dev
   ];
 
   nixpkgs.config.pulseaudio = true;
@@ -301,7 +300,7 @@ in
       pkgs.kubectl
       pkgs.hcloud
       pkgs.heroku
-      pkgs.awscli2
+      # pkgs.awscli2
       pkgs.terraform
       pkgs.minio-client
       pkgs.docker-compose
