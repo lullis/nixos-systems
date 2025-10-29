@@ -105,7 +105,8 @@ in {
         (global-set-key [(shift f1)] 'call-last-kbd-macro)
 
         ;; Set font to a size that is readable on HiDPI
-        ;;(set-face-attribute 'default nil :height 200)
+
+        (set-face-attribute 'default nil :height 100)
 
         ;; Set flymake variables (we are not using it, but seems like CSS Mode looks for it)
         (setq flymake-allowed-file-name-masks nil)
@@ -483,22 +484,22 @@ in {
         command = [ "nix-current-sandbox" "nix-shell-command" ];
       };
 
-      lsp-ui = {
-        enable = true;
-        command = [ "lsp-ui-mode" ];
-        bind = {
-          "C-c r d" = "lsp-ui-doc-show";
-          "C-c f s" = "lsp-ui-find-workspace-symbol";
-        };
-        config = ''
-            (setq lsp-ui-sideline-enable t
-                  lsp-ui-sideline-show-symbol nil
-                  lsp-ui-sideline-show-hover nil
-                  lsp-ui-sideline-show-code-actions nil
-                  lsp-ui-sideline-update-mode 'point
-                  lsp-ui-doc-enable nil)
-          '';
-      };
+      # lsp-ui = {
+      #   enable = true;
+      #   command = [ "lsp-ui-mode" ];
+      #   bind = {
+      #     "C-c r d" = "lsp-ui-doc-show";
+      #     "C-c f s" = "lsp-ui-find-workspace-symbol";
+      #   };
+      #   config = ''
+      #       (setq lsp-ui-sideline-enable t
+      #             lsp-ui-sideline-show-symbol nil
+      #             lsp-ui-sideline-show-hover nil
+      #             lsp-ui-sideline-show-code-actions nil
+      #             lsp-ui-sideline-update-mode 'point
+      #             lsp-ui-doc-enable nil)
+      #     '';
+      # };
 
       lsp-ui-flycheck = {
         enable = true;
