@@ -280,15 +280,15 @@ in
       pkgs.tree-sitter
       pkgs.zed-editor
       pkgs.postman
-      pkgs.code-cursor
-      pkgs.claude-code
       pkgs.typescript-language-server
       pkgs.vue-language-server
       pkgs.gopls
       pkgs.godef
       pkgs.gettext
+      pkgs.code-cursor
       pkgs.aider-chat
       pkgs.claude-code
+      pkgs.opencode
 
       # Devops
       pkgs.vault-bin
