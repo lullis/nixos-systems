@@ -337,7 +337,7 @@ in
       pkgs.zoom-us
       pkgs.dino
       pkgs.slack
-      pkgs.tdesktop
+      pkgs.telegram-desktop
       pkgs.discord
       pkgs.fractal
 
