@@ -261,6 +261,7 @@ in
       pkgs.rustup
       pkgs.go
       pkgs.cargo-tauri
+      pkgs.pnpm
       pkgs.yarn
       pkgs.bun
       pkgs.nixfmt-classic
