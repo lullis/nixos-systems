@@ -100,7 +100,6 @@ in
   security.rtkit.enable = true;
 
   programs = {
-    file-roller.enable = true;
     thunar.plugins = [
       pkgs.xfce.thunar-archive-plugin
       pkgs.xfce.thunar-media-tags-plugin
@@ -229,6 +228,7 @@ in
       pkgs.xdg-desktop-portal
       pkgs.xdg-desktop-portal-gtk
       pkgs.xarchiver
+      pkgs.file-roller
 
       # Desktop tools
       pkgs.mate.mate-calc
@@ -290,6 +290,8 @@ in
       pkgs.aider-chat
       pkgs.claude-code
       pkgs.opencode
+      pkgs.cloudflared
+      pkgs.ngrok
 
       # Devops
       pkgs.vault-bin
@@ -308,9 +310,9 @@ in
       pkgs.openssl
 
       # networking
-      pkgs.cloudflared
       pkgs.wireguard-tools
       pkgs.wg-netmanager
+
 
       # System Administration
       pkgs.apache-directory-studio
