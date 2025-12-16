@@ -28,7 +28,7 @@
 
   services.ollama = {
      enable = true;
-     acceleration = "rocm";
+     package = pkgs.ollama-rocm;
      environmentVariables = {
        ROC_ENABLE_PRE_VEGA = "1";
        HSA_OVERRIDE_GFX_VERSION = "11.0.0";
