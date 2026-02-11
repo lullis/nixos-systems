@@ -5,6 +5,8 @@ let
 
   nur = import (builtins.fetchTarball
     "https://github.com/nix-community/NUR/archive/master.tar.gz") { };
+
+
   python313Dev = pkgs.python313.withPackages (ps:
     with ps; [
       ansible-core
@@ -35,7 +37,6 @@ let
       signedjson
       hvac
       pywebpush
-      # hcloud
       tree-sitter
       poetry-dynamic-versioning
       python-lsp-server
@@ -203,6 +204,7 @@ in
      pkgs.arc-icon-theme
      pkgs.arc-theme
      pkgs.hplip
+     pkgs.docker-buildx
      python313Dev
   ];
 
@@ -245,6 +247,7 @@ in
       pkgs.libreoffice-qt
       pkgs.hunspell
       pkgs.reveal-md
+      pkgs.slidev-cli
 
       # Console tools
       pkgs.htop
