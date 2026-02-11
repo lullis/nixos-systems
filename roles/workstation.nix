@@ -67,6 +67,12 @@ in
   };
 
   networking.networkmanager.enable = true;
+  networking.firewall = {
+    extraInputRules = ''
+       iifname "docker0" tcp dport 11434 accept
+     '';
+  };
+
   virtualisation.docker = {
     enable = true;
     daemon.settings = {
@@ -76,6 +82,7 @@ in
       ipv6 = true;
       fixed-cidr-v6 = "fd00::/80";
     };
+
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];
@@ -188,6 +195,7 @@ in
      pkgs.whois
      pkgs.vim
      pkgs.gocryptfs
+     pkgs.docker-buildx
      pkgs.xfce.xfce4-sensors-plugin
      pkgs.xfce.xfce4-weather-plugin
      pkgs.xfce.xfce4-whiskermenu-plugin
