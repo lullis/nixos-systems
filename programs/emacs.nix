@@ -46,6 +46,11 @@ in {
         (line-number-mode)
         (column-number-mode)
 
+
+        ;; Disable annoying bell sound and let it flash the screen instead
+        (setq ring-bell-function 'ignore)
+        (setq visible-bell t)
+
         ;; Enable some features that are disabled by default.
         (put 'narrow-to-region 'disabled nil)
 
