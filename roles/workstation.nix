@@ -109,9 +109,9 @@ in
 
   programs = {
     thunar.plugins = [
-      pkgs.xfce.thunar-archive-plugin
-      pkgs.xfce.thunar-media-tags-plugin
-      pkgs.xfce.thunar-volman
+      pkgs.thunar-archive-plugin
+      pkgs.thunar-media-tags-plugin
+      pkgs.thunar-volman
     ];
 
     appimage = {
@@ -163,6 +163,9 @@ in
     displayManager = {
       enable = true;
       defaultSession = "xfce";
+      gdm = {
+        enable = true;
+      };
     };
 
     xserver = {
@@ -186,6 +189,8 @@ in
 
     gnome.gnome-keyring.enable = true;
     blueman.enable = true;
+
+    ollama.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -196,12 +201,12 @@ in
      pkgs.vim
      pkgs.gocryptfs
      pkgs.docker-buildx
-     pkgs.xfce.xfce4-sensors-plugin
-     pkgs.xfce.xfce4-weather-plugin
-     pkgs.xfce.xfce4-whiskermenu-plugin
-     pkgs.xfce.xfce4-pulseaudio-plugin
-     pkgs.xfce.xfce4-icon-theme
-     pkgs.xfce.xfwm4-themes
+     pkgs.xfce4-sensors-plugin
+     pkgs.xfce4-weather-plugin
+     pkgs.xfce4-whiskermenu-plugin
+     pkgs.xfce4-pulseaudio-plugin
+     pkgs.xfce4-icon-theme
+     pkgs.xfwm4-themes
      pkgs.greybird
      pkgs.pop-icon-theme
      pkgs.papirus-icon-theme
@@ -241,8 +246,8 @@ in
       pkgs.file-roller
 
       # Desktop tools
-      pkgs.mate.mate-calc
-      pkgs.mate.atril
+      pkgs.mate-calc
+      pkgs.atril
       pkgs.drawio
       pkgs.vokoscreen-ng
       # pkgs.etcher
@@ -252,7 +257,7 @@ in
       pkgs.simple-scan
 
       # Office Tools
-      pkgs.libreoffice-qt
+      # pkgs.libreoffice-still
       pkgs.hunspell
       pkgs.reveal-md
       pkgs.slidev-cli
@@ -314,7 +319,7 @@ in
       pkgs.kubectl
       pkgs.hcloud
       pkgs.heroku
-      # pkgs.awscli2
+      pkgs.awscli2
       pkgs.terraform
       pkgs.minio-client
       pkgs.docker-compose
@@ -356,19 +361,20 @@ in
 
       # LLM Assistants
       pkgs.lmstudio
+      pkgs.open-webui
 
       # Media Editors
       pkgs.gimp
       pkgs.inkscape
       pkgs.pitivi
-      pkgs.opusTools
+      # pkgs.opus-tools
       pkgs.sox
       # pkgs.handbrake
 
       # Media Managers
       pkgs.mkvtoolnix
       pkgs.yt-dlp
-      pkgs.beets
+      # pkgs.beets
 
       # Media players
       pkgs.vlc
@@ -403,6 +409,26 @@ in
         Service = {
           StandardOutput = "journal";
           ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/cloudflared tunnel run";
+        };
+      };
+
+      open-webui = {
+        Unit = {
+          Description = "Open WebUI";
+        };
+        Service = {
+          StandardOutput = "journal";
+          ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/open-webui serve --host 0.0.0.0 --port 8765";
+          Environment = [
+            "WEBUI_SECRET_KEY=${config.users.users.raphael.home}/.openwebui/secret_key"
+            "OLLAMA_API_BASE_URL=http://127.0.0.1:11434"
+            "WEBUI_AUTH=False"
+            "ANONYMIZED_TELEMETRY=False"
+            "DO_NOT_TRACK=True"
+            "SCARF_NO_ANALYTICS=True"
+            "FRONTEND_BUILD_DIR=${config.users.users.raphael.home}/.openwebui/frontend"
+            "DATA_DIR=${config.users.users.raphael.home}/.openwebui/data"
+          ];
         };
       };
 
