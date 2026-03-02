@@ -1,15 +1,17 @@
 {
   enable = true;
 
-  userName = "Raphael Lullis";
-  userEmail = "raphael@mushroomlabs.com";
+  settings = {
+    user = {
+      name = "Raphael Lullis";
+      email = "raphael@mushroomlabs.com";
+    };
 
-  aliases = {
-    st = "status";
-    ci = "commit";
-    co = "checkout";
-    w = "whatchanged";
+    alias = {
+      st = "status";
+      ci = "commit";
+      co = "checkout";
+      w = "whatchanged";
+    };
   };
-
-
 }
