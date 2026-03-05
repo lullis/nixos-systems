@@ -3,7 +3,6 @@
 {
   imports =
     [
-      (import <home-manager/nixos>)
       ./hardware-configuration.nix
       ../../roles/common.nix
       ../../roles/workstation.nix
