@@ -38,6 +38,10 @@
   services.kubo = {
     enable = true;
     settings = {
+      API.HTTPHeaders = {
+        "Access-Control-Allow-Origin" = [ "*" ];
+        "Access-Control-Allow-Methods" = [ "GET" "POST" "OPTIONS" ];
+      };
       Addresses = {
         AddrsListen = [ "/ip4/127.0.0.1/tcp/4001" ];
         API = "/ip4/127.0.0.1/tcp/5001";
