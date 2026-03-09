@@ -104,7 +104,7 @@ in
   };
 
   security.sudo.wheelNeedsPassword = false;
-  security.pam.services.lightdm.enableGnomeKeyring = true;
+  security.pam.services.gdm.enableGnomeKeyring = true;
   security.rtkit.enable = true;
 
   programs = {
@@ -400,6 +400,10 @@ in
       "Emacs.toolBar" = false;
       "Emacs.verticalScrollBars" = false;
     };
+
+    services.gnome-keyring.components = [
+      "ssh" "secrets" "pkcs11"
+    ];
 
     systemd.user.services = {
       cloudflared = {
