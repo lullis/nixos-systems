@@ -225,6 +225,23 @@ in
 
   environment.pathsToLink = [ "/share/zsh" ];
 
+  # Install fonts
+  fonts.packages = with pkgs; [
+    bront_fonts
+    corefonts
+    ipafont
+    nerd-fonts.dejavu-sans-mono
+    nerd-fonts.ubuntu-sans
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-monochrome-emoji
+    open-sans
+    # typodermic-free-fonts
+    ucs-fonts
+    zilla-slab
+  ];
+
+
   home-manager.users.raphael = {
     imports = [
       nur.repos.rycee.hmModules.emacs-init
@@ -264,7 +281,7 @@ in
 
       # Console tools
       pkgs.htop
-      pkgs.neofetch
+      pkgs.fastfetch
       pkgs.silver-searcher
       pkgs.ripgrep
       pkgs.fd
@@ -302,7 +319,7 @@ in
       pkgs.gopls
       pkgs.godef
       pkgs.gettext
-      pkgs.code-cursor
+      # pkgs.code-cursor
       pkgs.aider-chat
       pkgs.claude-code
       pkgs.opencode
@@ -369,7 +386,7 @@ in
       pkgs.pitivi
       # pkgs.opus-tools
       pkgs.sox
-      # pkgs.handbrake
+      pkgs.handbrake
 
       # Media Managers
       pkgs.mkvtoolnix
