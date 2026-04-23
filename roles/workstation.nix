@@ -237,7 +237,6 @@ in
     noto-fonts-monochrome-emoji
     open-sans
     # typodermic-free-fonts
-    ucs-fonts
     zilla-slab
   ];
 
@@ -274,7 +273,7 @@ in
       pkgs.simple-scan
 
       # Office Tools
-      # pkgs.libreoffice-still
+      pkgs.libreoffice-still
       pkgs.hunspell
       pkgs.reveal-md
       pkgs.slidev-cli

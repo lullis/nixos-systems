@@ -6,6 +6,7 @@
       ../../roles/common.nix
       ../../roles/workstation.nix
       ../../roles/laptop.nix
+      ../../roles/htpc.nix
       ../../hardware/framework/13-inch/common/default.nix
     ];
 
