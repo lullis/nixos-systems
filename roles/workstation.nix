@@ -189,8 +189,9 @@ in
 
     gnome.gnome-keyring.enable = true;
     blueman.enable = true;
-
     ollama.enable = true;
+    llama-cpp.enable = true;
+    llama-swap.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -378,6 +379,7 @@ in
       # LLM Assistants
       pkgs.lmstudio
       pkgs.open-webui
+      pkgs.llama-cpp
 
       # Media Editors
       pkgs.gimp
