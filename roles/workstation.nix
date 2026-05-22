@@ -253,7 +253,6 @@ in
       pkgs.gparted
       pkgs.unzip
       pkgs.lm_sensors
-      # pkgs.archiver
 
       # Desktop Basics
       pkgs.fantasque-sans-mono
@@ -261,13 +260,14 @@ in
       pkgs.xdg-desktop-portal-gtk
       pkgs.xarchiver
       pkgs.file-roller
+      pkgs.p7zip
 
       # Desktop tools
       pkgs.mate-calc
       pkgs.atril
       pkgs.drawio
       pkgs.vokoscreen-ng
-      # pkgs.etcher
+      pkgs.woeusb-ng
       pkgs.transmission_4-gtk
       pkgs.gnome-disk-utility
       pkgs.seahorse
@@ -291,18 +291,15 @@ in
 
       # Software Development
       pkgs.direnv
-      pkgs.rustup
       pkgs.go
-      pkgs.cargo-tauri
       pkgs.pnpm
       pkgs.yarn
-      pkgs.bun
-      pkgs.nixfmt-classic
+      pkgs.nixfmt
       pkgs.nodejs_22
       # pkgs.corepack_22
       pkgs.gcc
       pkgs.gnumake
-      pkgs.poetry
+      pkgs.just
       pkgs.uv
       pkgs.pre-commit
       pkgs.git
@@ -319,7 +316,6 @@ in
       pkgs.gopls
       pkgs.godef
       pkgs.gettext
-      # pkgs.code-cursor
       pkgs.aider-chat
       pkgs.claude-code
       pkgs.opencode
@@ -345,7 +341,7 @@ in
       # networking
       pkgs.wireguard-tools
       pkgs.wg-netmanager
-
+      pkgs.nssTools
 
       # System Administration
       pkgs.apache-directory-studio
@@ -385,14 +381,14 @@ in
       pkgs.gimp
       pkgs.inkscape
       pkgs.pitivi
-      # pkgs.opus-tools
+      pkgs.opus-tools
       pkgs.sox
       pkgs.handbrake
 
       # Media Managers
       pkgs.mkvtoolnix
       pkgs.yt-dlp
-      # pkgs.beets
+      pkgs.beets
 
       # Media players
       pkgs.vlc
