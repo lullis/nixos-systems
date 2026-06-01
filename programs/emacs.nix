@@ -116,6 +116,8 @@ in {
         ;; Set flymake variables (we are not using it, but seems like CSS Mode looks for it)
         (setq flymake-allowed-file-name-masks nil)
         (setq flymake-err-line-patterns nil)
+
+        (editorconfig-mode t)
       '';
 
     usePackage = {
