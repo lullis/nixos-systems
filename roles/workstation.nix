@@ -218,6 +218,8 @@ in
      pkgs.hplip
      pkgs.docker-buildx
      python313Dev
+     pkgs.xvfb
+     pkgs.xvfb-run
   ];
 
   nixpkgs.config.pulseaudio = true;
@@ -440,7 +442,7 @@ in
           ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/open-webui serve --host 0.0.0.0 --port 8765";
           Environment = [
             "WEBUI_SECRET_KEY=${config.users.users.raphael.home}/.openwebui/secret_key"
-            "OLLAMA_API_BASE_URL=http://127.0.0.1:11434"
+            "OLLAMA_API_BASE_URL=http://0.0.0.0:11434"
             "WEBUI_AUTH=False"
             "ANONYMIZED_TELEMETRY=False"
             "DO_NOT_TRACK=True"
