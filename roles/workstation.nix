@@ -282,7 +282,7 @@ in
       # Console tools
       pkgs.htop
       pkgs.fastfetch
-      pkgs.silver-searcher
+      # pkgs.silver-searcher
       pkgs.ripgrep
       pkgs.fd
       pkgs.jq
@@ -321,6 +321,7 @@ in
       pkgs.opencode
       pkgs.cloudflared
       pkgs.ngrok
+      pkgs.mermaid-cli
 
       # Devops
       pkgs.vault-bin
