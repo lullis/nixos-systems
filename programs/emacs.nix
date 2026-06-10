@@ -1,7 +1,7 @@
 {... }:
 let
 counsel-projectile-shortcut-map = {
-  "C-c C-s" = "counsel-projectile-ag";
+  "C-c C-s" = "counsel-projectile-rg";
   "C-c C-f" = "counsel-projectile-find-file";
 };
 in {
@@ -336,7 +336,7 @@ in {
         enable = true;
         mode = [ ''("\\.ts\\'" . typescript-mode)''];
         bind = {
-          "C-c C-s" = "counsel-projectile-ag";
+          "C-c C-s" = "counsel-projectile-rg";
           "C-c C-f" = "counsel-projectile-find-file";
         };
       };
@@ -362,7 +362,7 @@ in {
         bind = {
           "C-c C-l" = "vue-mode-reparse";
           "C-c C-e" = "vue-mode-edit-indirect-at-point";
-          "C-c C-s" = "counsel-projectile-ag";
+          "C-c C-s" = "counsel-projectile-rg";
           "C-c C-f" = "counsel-projectile-find-file";
         };
         bindLocal = {
@@ -374,7 +374,7 @@ in {
         enable = true;
         mode = [ ''("\\.tsx\\'" . rjsx-mode)'' ''("\\.jsx\\'" . rjsx-mode)'' ];
         bind = {
-          "C-c C-s" = "counsel-projectile-ag";
+          "C-c C-s" = "counsel-projectile-rg";
           "C-c C-f" = "counsel-projectile-find-file";
         };
       };
@@ -461,7 +461,7 @@ in {
       counsel-projectile = {
         enable = true;
         bind = {
-          "C-c C-s" = "counsel-projectile-ag";
+          "C-c C-s" = "counsel-projectile-rg";
           "C-c C-f" = "counsel-projectile-find-file";
         };
       };
@@ -742,7 +742,7 @@ in {
           "hs-minor-mode"
           "(python-ts-mode . ruff-format-on-save-mode)"
           ''(python-ts-mode . (lambda ()
-                (define-key python-ts-mode-map (kbd "C-c C-s") 'counsel-projectile-ag)
+                (define-key python-ts-mode-map (kbd "C-c C-s") 'counsel-projectile-rg)
                 (define-key python-ts-mode-map (kbd "C-c C-f") 'counsel-projectile-find-file)
           ))''
         ];
@@ -810,7 +810,7 @@ in {
         enable = true;
         mode = [ ''"\\.html\\'"'' ];
         bind = {
-          "C-c C-s" = "counsel-projectile-ag";
+          "C-c C-s" = "counsel-projectile-rg";
           "C-c C-f" = "counsel-projectile-find-file";
         };
 
