@@ -190,8 +190,6 @@ in
     gnome.gnome-keyring.enable = true;
     blueman.enable = true;
     ollama.enable = true;
-    llama-cpp.enable = true;
-    llama-swap.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -376,7 +374,6 @@ in
       # LLM Assistants
       pkgs.lmstudio
       pkgs.open-webui
-      pkgs.llama-cpp
 
       # Media Editors
       pkgs.gimp
@@ -420,6 +417,9 @@ in
       "ssh" "secrets" "pkcs11"
     ];
 
+    xfconf.settings.xfce4-session = {
+      "startup/ssh-agent/enabled" = false;
+    };
     systemd.user.services = {
       cloudflared = {
         Unit = {
@@ -473,5 +473,9 @@ in
 
   programs.nm-applet.enable = true;
   programs.nm-applet.indicator = true;
-  # programs.ssh.startAgent = true;
+  programs.gnupg.agent = {
+    enable = true;
+    # Leave gnome keyring to control the ssh agent socket
+    enableSSHSupport = false;
+  };
 }
