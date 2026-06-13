@@ -50,10 +50,4 @@
   services.ollama = {
     enable = true;
   };
-
-  services.llama-cpp = {
-    modelsDir = "/var/lib/llama-cpp/models";
-    port = 10000;
-  };
-
 }
