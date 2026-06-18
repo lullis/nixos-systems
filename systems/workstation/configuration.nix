@@ -7,6 +7,7 @@
       ../../roles/common.nix
       ../../roles/workstation.nix
       ../../roles/htpc.nix
+      ../../roles/office.nix
     ];
 
   boot.loader.efi.canTouchEfiVariables = true;
