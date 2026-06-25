@@ -56,7 +56,7 @@ in
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [
-      "electron-19.1.9"
+      "electron-39.8.10"
       "vault-bin-1.15.6"
     ];
   };
@@ -274,10 +274,13 @@ in
       pkgs.simple-scan
 
       # Office Tools
+      pkgs.logseq
       pkgs.libreoffice-still
       pkgs.hunspell
       pkgs.reveal-md
       pkgs.slidev-cli
+      pkgs.pandoc
+      pkgs.multimarkdown
 
       # Console tools
       pkgs.htop
@@ -318,10 +321,12 @@ in
       pkgs.gettext
       pkgs.aider-chat
       pkgs.claude-code
+      pkgs.pi-coding-agent
       pkgs.opencode
       pkgs.cloudflared
       pkgs.ngrok
       pkgs.mermaid-cli
+      pkgs.plantuml
 
       # Devops
       pkgs.vault-bin
