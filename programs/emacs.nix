@@ -642,6 +642,10 @@ in {
         defer = true;
       };
 
+      treemacs = {
+        enable = true;
+      };
+
       flycheck = {
         enable = true;
         diminish = [ "flycheck-mode" ];
