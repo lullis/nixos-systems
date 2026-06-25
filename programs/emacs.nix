@@ -543,6 +543,11 @@ in {
         mode = [ ''"\\.mdwn\\'"'' ''"\\.markdown\\'"'' ''"\\.md\\'"'' ];
       };
 
+      markdown-preview-mode = {
+        enable = true;
+        after = [ "markdown-mode"];
+      };
+
       pandoc-mode = {
         enable = true;
         after = [ "markdown-mode" ];
