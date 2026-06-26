@@ -441,6 +441,7 @@ in
       open-webui = {
         Unit = {
           Description = "Open WebUI";
+          After = "graphical-session.target";
         };
         Service = {
           StandardOutput = "journal";
