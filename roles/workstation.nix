@@ -295,7 +295,7 @@ in
       # Software Development
       pkgs.direnv
       pkgs.go
-      pkgs.pnpm
+      pkgs.pnpm_11
       pkgs.yarn
       pkgs.nixfmt
       pkgs.nodejs_22
@@ -315,7 +315,7 @@ in
       pkgs.zed-editor
       pkgs.postman
       pkgs.typescript-language-server
-      pkgs.vue-language-server
+      # pkgs.vue-language-server
       pkgs.gopls
       pkgs.godef
       pkgs.gettext
