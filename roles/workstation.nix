@@ -42,7 +42,7 @@ let
       python-lsp-server
       python-lsp-black
       pylsp-rope
-      pylsp-mypy
+      # pylsp-mypy
       pyls-isort
       pyls-flake8
       ruff
@@ -334,7 +334,7 @@ in
       pkgs.gitlab-runner
       pkgs.gitlab-ci-local
       pkgs.woodpecker-cli
-      pkgs.minikube
+      # pkgs.minikube
       pkgs.kubectl
       pkgs.hcloud
       pkgs.heroku
