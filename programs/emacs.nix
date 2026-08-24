@@ -466,6 +466,10 @@ in {
         };
       };
 
+      # diagram-preview = {
+      #   enable = true;
+      # };
+
       # Configure magit, a nice mode for the git SCM.
       magit = {
         enable = true;
@@ -546,6 +550,10 @@ in {
       markdown-preview-mode = {
         enable = true;
         after = [ "markdown-mode"];
+      };
+
+      mermaid-mode = {
+        enable = true;
       };
 
       pandoc-mode = {
