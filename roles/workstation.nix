@@ -443,6 +443,9 @@ in
           Description = "Open WebUI";
           After = "graphical-session.target";
         };
+        Install = {
+          WantedBy = ["graphical-session.target"];
+        };
         Service = {
           StandardOutput = "journal";
           ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/open-webui serve --host 0.0.0.0 --port 8765";
