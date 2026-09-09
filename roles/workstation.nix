@@ -335,6 +335,7 @@ in
       pkgs.gitlab-ci-local
       pkgs.woodpecker-cli
       # pkgs.minikube
+      pkgs.k9s
       pkgs.kubectl
       pkgs.hcloud
       pkgs.heroku
@@ -359,6 +360,7 @@ in
       pkgs.gnome-secrets
       pkgs.kpcli
       pkgs.libsecret
+      pkgs.sops
 
       # Web
       pkgs.epiphany
