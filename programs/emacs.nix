@@ -1,8 +1,8 @@
 {... }:
 let
-counsel-projectile-shortcut-map = {
-  "C-c C-s" = "counsel-projectile-rg";
-  "C-c C-f" = "counsel-projectile-find-file";
+project-shortcut-map = {
+  "C-c C-s" = "rl/project-rg";
+  "C-c C-f" = "projectile-find-file";
 };
 in {
   enable = true;
@@ -118,6 +118,20 @@ in {
         (setq flymake-err-line-patterns nil)
 
         (editorconfig-mode t)
+
+        ;; Search the current project with ripgrep.
+        ;; Replaces counsel-projectile-rg: counsel-projectile has been
+        ;; unmaintained since 2021 and calls projectile-ignored-files-rel /
+        ;; projectile-ignored-directories-rel, which projectile removed
+        ;; (no obsolete aliases) in the 20260807 rewrite.
+        (defun rl/project-rg (&optional initial-input)
+          "Search the current project with rg, via `counsel-rg'.
+        INITIAL-INPUT, if non-nil, prefills the minibuffer."
+          (interactive)
+          (counsel-rg initial-input
+                      (or (and (fboundp 'projectile-project-root)
+                               (ignore-errors (projectile-project-root)))
+                          default-directory)))
       '';
 
     usePackage = {
@@ -336,8 +350,8 @@ in {
         enable = true;
         mode = [ ''("\\.ts\\'" . typescript-mode)''];
         bind = {
-          "C-c C-s" = "counsel-projectile-rg";
-          "C-c C-f" = "counsel-projectile-find-file";
+          "C-c C-s" = "rl/project-rg";
+          "C-c C-f" = "projectile-find-file";
         };
       };
 
@@ -362,11 +376,11 @@ in {
         bind = {
           "C-c C-l" = "vue-mode-reparse";
           "C-c C-e" = "vue-mode-edit-indirect-at-point";
-          "C-c C-s" = "counsel-projectile-rg";
-          "C-c C-f" = "counsel-projectile-find-file";
+          "C-c C-s" = "rl/project-rg";
+          "C-c C-f" = "projectile-find-file";
         };
         bindLocal = {
-          vue-mode-map = counsel-projectile-shortcut-map;
+          vue-mode-map = project-shortcut-map;
         };
       };
 
@@ -374,8 +388,8 @@ in {
         enable = true;
         mode = [ ''("\\.tsx\\'" . rjsx-mode)'' ''("\\.jsx\\'" . rjsx-mode)'' ];
         bind = {
-          "C-c C-s" = "counsel-projectile-rg";
-          "C-c C-f" = "counsel-projectile-find-file";
+          "C-c C-s" = "rl/project-rg";
+          "C-c C-f" = "projectile-find-file";
         };
       };
 
@@ -397,6 +411,10 @@ in {
             (setq save-place-file (locate-user-emacs-file "places"))
           '';
       };
+
+      # sops-mode = {
+      #   enable = true;
+      # };
 
       treesit-auto = {
         enable = true;
@@ -456,14 +474,6 @@ in {
           "C-x C-y" = "counsel-yank-pop";
         };
         diminish = [ "counsel-mode" ];
-      };
-
-      counsel-projectile = {
-        enable = true;
-        bind = {
-          "C-c C-s" = "counsel-projectile-rg";
-          "C-c C-f" = "counsel-projectile-find-file";
-        };
       };
 
       # diagram-preview = {
@@ -677,6 +687,7 @@ in {
           "s-p" = "projectile-command-map";
           "C-c p" = "projectile-command-map";
         };
+        bind = project-shortcut-map;
         config = ''
             (setq projectile-project-search-path '("~/code/" "~/projects/"))
             (setq projectile-enable-caching t
@@ -759,21 +770,21 @@ in {
           "hs-minor-mode"
           "(python-ts-mode . ruff-format-on-save-mode)"
           ''(python-ts-mode . (lambda ()
-                (define-key python-ts-mode-map (kbd "C-c C-s") 'counsel-projectile-rg)
-                (define-key python-ts-mode-map (kbd "C-c C-f") 'counsel-projectile-find-file)
+                (define-key python-ts-mode-map (kbd "C-c C-s") 'rl/project-rg)
+                (define-key python-ts-mode-map (kbd "C-c C-f") 'projectile-find-file)
           ))''
         ];
         bindLocal = {
-          python-ts-mode-map = counsel-projectile-shortcut-map;
-          python-mode-map = counsel-projectile-shortcut-map;
+          python-ts-mode-map = project-shortcut-map;
+          python-mode-map = project-shortcut-map;
         };
       };
 
       python-mode = {
         enable = true;
         bindLocal = {
-          python-mode-map = counsel-projectile-shortcut-map;
-          python-ts-mode-map = counsel-projectile-shortcut-map;
+          python-mode-map = project-shortcut-map;
+          python-ts-mode-map = project-shortcut-map;
         };
       };
 
@@ -827,8 +838,8 @@ in {
         enable = true;
         mode = [ ''"\\.html\\'"'' ];
         bind = {
-          "C-c C-s" = "counsel-projectile-rg";
-          "C-c C-f" = "counsel-projectile-find-file";
+          "C-c C-s" = "rl/project-rg";
+          "C-c C-f" = "projectile-find-file";
         };
 
         config = ''
