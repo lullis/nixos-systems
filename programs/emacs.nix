@@ -119,18 +119,26 @@ in {
 
         (editorconfig-mode t)
 
-        ;; Search the current project with ripgrep.
-        ;; Replaces counsel-projectile-rg: counsel-projectile has been
-        ;; unmaintained since 2021 and calls projectile-ignored-files-rel /
-        ;; projectile-ignored-directories-rel, which projectile removed
-        ;; (no obsolete aliases) in the 20260807 rewrite.
+        ;; Interactive find-as-you-type search of the current project
+        ;; with ripgrep. Always search from the project's top-level
+        ;; directory: resolve it via projectile (loading it on demand,
+        ;; since `projectile-project-root' is not autoloaded before
+        ;; first use), then via the built-in project.el, and only
+        ;; fall back to `default-directory' as a last resort.
         (defun rl/project-rg (&optional initial-input)
-          "Search the current project with rg, via `counsel-rg'.
-        INITIAL-INPUT, if non-nil, prefills the minibuffer."
+          "Search the current project root with `counsel-rg'.
+INITIAL-INPUT, if non-nil, prefills the minibuffer."
           (interactive)
+          (require 'projectile nil t)
           (counsel-rg initial-input
                       (or (and (fboundp 'projectile-project-root)
                                (ignore-errors (projectile-project-root)))
+                          (and (fboundp 'project-current)
+                               (ignore-errors
+                                 (when-let ((proj (project-current)))
+                                   (if (fboundp 'project-root)
+                                       (project-root proj)
+                                     (car (project-roots proj))))))
                           default-directory)))
       '';
 
@@ -348,7 +356,7 @@ in {
 
       typescript-mode = {
         enable = true;
-        mode = [ ''("\\.ts\\'" . typescript-mode)''];
+        mode = [ ''("\\.ts\\'" . typescript-mode)'' ];
         bind = {
           "C-c C-s" = "rl/project-rg";
           "C-c C-f" = "projectile-find-file";
@@ -583,11 +591,12 @@ in {
 
       rainbow-mode = { enable = true; };
 
-      # Use ripgrep for fast text search in projects. I usually use
-      # this through Projectile.
-      ripgrep = {
+      # Project-wide ripgrep search via rg.el. `rg-project' runs from
+      # the project root, resolved through projectile / project.el / the
+      # VCS root (falls back to the file's dir only as a last resort).
+      rg = {
         enable = true;
-        command = [ "ripgrep-regexp" ];
+        command = [ "rg-project" ];
       };
 
       org = {

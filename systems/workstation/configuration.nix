@@ -36,6 +36,30 @@
      };
    };
 
+  systemd.user.services.open-webui = {
+    Unit = {
+      Description = "Open WebUI";
+      After = "graphical-session.target";
+    };
+    Install = {
+      WantedBy = ["graphical-session.target"];
+    };
+    Service = {
+      StandardOutput = "journal";
+      ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/open-webui serve --host 0.0.0.0 --port 8765";
+      Environment = [
+        "WEBUI_SECRET_KEY=${config.users.users.raphael.home}/.openwebui/secret_key"
+        "OLLAMA_API_BASE_URL=http://0.0.0.0:11434"
+        "WEBUI_AUTH=False"
+        "ANONYMIZED_TELEMETRY=False"
+        "DO_NOT_TRACK=True"
+        "SCARF_NO_ANALYTICS=True"
+        "FRONTEND_BUILD_DIR=${config.users.users.raphael.home}/.openwebui/frontend"
+        "DATA_DIR=${config.users.users.raphael.home}/.openwebui/data"
+      ];
+    };
+  };
+
   services.kubo = {
     enable = true;
     settings = {
