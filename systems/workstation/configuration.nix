@@ -37,14 +37,12 @@
    };
 
   systemd.user.services.open-webui = {
-    Unit = {
+    unitConfig = {
       Description = "Open WebUI";
       After = "graphical-session.target";
     };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
-    Service = {
+    wantedBy = ["graphical-session.target"];
+    serviceConfig = {
       StandardOutput = "journal";
       ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/open-webui serve --host 0.0.0.0 --port 8765";
       Environment = [
