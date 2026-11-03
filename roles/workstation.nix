@@ -75,6 +75,7 @@ in
 
   virtualisation.docker = {
     enable = true;
+    logDriver = "json-file";
     daemon.settings = {
       # userland-proxy = false;
       experimental = true;
