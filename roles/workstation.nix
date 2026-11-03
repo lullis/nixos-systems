@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 let
   plainTextDir = "${config.users.users.raphael.home}/.secrets";
   encryptedDir = "${config.users.users.raphael.home}/.sync/vaults/gocryptfs";
@@ -319,7 +319,6 @@ in
       pkgs.gopls
       pkgs.godef
       pkgs.gettext
-      pkgs.aider-chat
       pkgs.claude-code
       pkgs.pi-coding-agent
       pkgs.opencode
@@ -341,7 +340,6 @@ in
       pkgs.heroku
       pkgs.awscli2
       pkgs.terraform
-      pkgs.minio-client
       pkgs.docker-compose
       pkgs.openssl
 
@@ -382,7 +380,7 @@ in
 
       # LLM Assistants
       pkgs.lmstudio
-      pkgs.open-webui
+      # pkgs.open-webui
 
       # Media Editors
       pkgs.gimp
@@ -404,6 +402,22 @@ in
     ];
 
     programs.emacs = import ../programs/emacs.nix {};
+
+    # nur.repos.rycee.hmModules.emacs-init generates ~/.emacs.d/early-init.el
+    # and init.el without a lexical-binding cookie, which triggers a warning
+    # on Emacs 30+. Override those two files to add the cookie.
+    home.file.".emacs.d/early-init.el".text = lib.mkForce ''
+      ;;; early-init.el --- -*- lexical-binding: t; -*-
+      (require 'hm-early-init)
+      (provide 'early-init)
+    '';
+
+    home.file.".emacs.d/init.el".text = lib.mkForce ''
+      ;;; init.el --- -*- lexical-binding: t; -*-
+      (require 'hm-init)
+      (provide 'init)
+    '';
+
     programs.tmux = import ../programs/tmux.nix {tmuxPlugins = pkgs.tmuxPlugins;};
     programs.git = import ../programs/git.nix;
     programs.alacritty = import ../programs/alacritty.nix;
@@ -440,29 +454,32 @@ in
         };
       };
 
-      open-webui = {
-        Unit = {
-          Description = "Open WebUI";
-          After = "graphical-session.target";
-        };
-        Install = {
-          WantedBy = ["graphical-session.target"];
-        };
-        Service = {
-          StandardOutput = "journal";
-          ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/open-webui serve --host 0.0.0.0 --port 8765";
-          Environment = [
-            "WEBUI_SECRET_KEY=${config.users.users.raphael.home}/.openwebui/secret_key"
-            "OLLAMA_API_BASE_URL=http://0.0.0.0:11434"
-            "WEBUI_AUTH=False"
-            "ANONYMIZED_TELEMETRY=False"
-            "DO_NOT_TRACK=True"
-            "SCARF_NO_ANALYTICS=True"
-            "FRONTEND_BUILD_DIR=${config.users.users.raphael.home}/.openwebui/frontend"
-            "DATA_DIR=${config.users.users.raphael.home}/.openwebui/data"
-          ];
-        };
-      };
+      # Open WebUI is currently broken due to transient dependency on
+      # posthog, which is marked broken on nixos-unstable
+
+      # open-webui = {
+      #   Unit = {
+      #     Description = "Open WebUI";
+      #     After = "graphical-session.target";
+      #   };
+      #   Install = {
+      #     WantedBy = ["graphical-session.target"];
+      #   };
+      #   Service = {
+      #     StandardOutput = "journal";
+      #     ExecStart = "${config.users.users.raphael.home}/.nix-profile/bin/open-webui serve --host 0.0.0.0 --port 8765";
+      #     Environment = [
+      #       "WEBUI_SECRET_KEY=${config.users.users.raphael.home}/.openwebui/secret_key"
+      #       "OLLAMA_API_BASE_URL=http://0.0.0.0:11434"
+      #       "WEBUI_AUTH=False"
+      #       "ANONYMIZED_TELEMETRY=False"
+      #       "DO_NOT_TRACK=True"
+      #       "SCARF_NO_ANALYTICS=True"
+      #       "FRONTEND_BUILD_DIR=${config.users.users.raphael.home}/.openwebui/frontend"
+      #       "DATA_DIR=${config.users.users.raphael.home}/.openwebui/data"
+      #     ];
+      #   };
+      # };
 
       gocryptfs = {
         Unit = {
