@@ -383,6 +383,9 @@ in
       pkgs.lmstudio
       # pkgs.open-webui
 
+      # MCP Servers
+      pkgs.gitea-mcp-server
+
       # Media Editors
       pkgs.gimp
       pkgs.inkscape
